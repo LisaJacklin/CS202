@@ -25,9 +25,12 @@ int main()
     //call the binary data from file data.dat
     std::ifstream input("data.dat", ios::binary | ios::in);
 
+    //place all values into a vector for easy sum, size, and average.
     std::vector <int> data;
     int i;
+    cout << "reading data.dat file" << endl;
 
+    //test that the input file is being read and opened properly
     while (true) {
         input.read(reinterpret_cast<char*> (&i), sizeof(int));
 
@@ -51,7 +54,7 @@ int main()
 
     for (int n : data) sum += n;
 
-    average = (double)sum / data.size();
+    average = sum / data.size();
 
     cout << "Integer Sum: " << sum << endl;
     cout << "Integer Average: " << average << endl;
