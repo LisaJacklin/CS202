@@ -1,20 +1,59 @@
-// Lab5.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// Lab5.cpp 
+//Lisa Jacklin
+//CS 202
+//2/22/2022
+
+/*
+Requirements: 
+-open and read from binary file
+1. read integers from file
+2. print the number of integers, sum and average.
+
+*/
 
 #include <iostream>
+#include <fstream>
+#include <ios>
+#include <vector>
+
+using std::cout;
+using std::endl;
+using std::ios;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    //call the binary data from file data.dat
+    std::ifstream input("data.dat", ios::binary | ios::in);
+
+    std::vector <int> data;
+    int i;
+
+    while (true) {
+        input.read(reinterpret_cast<char*> (&i), sizeof(int));
+
+        if (!input) {
+            if (input.eof()) {
+                break;
+            }
+            cout << "Reading error" << endl;
+            return 0;
+        }
+        data.push_back(i);
+    }
+
+    //now that the file is read,
+    //display the number of integers
+    cout << "Number of integers: " << data.size() << endl;
+
+    //now the sum, and average;
+    int sum = 0;
+    double average;
+
+    for (int n : data) sum += n;
+
+    average = (double)sum / data.size();
+
+    cout << "Integer Sum: " << sum << endl;
+    cout << "Integer Average: " << average << endl;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
