@@ -16,9 +16,10 @@ Write a test that checks:
 - copy constructor copies members to each other
 - euqality/inequality operators work
 */
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp" //has to be included to test
 
 #include <iostream>
-#include "catch.hpp" //has to be included to test
 using std::cout;
 using std::endl;
 
@@ -61,24 +62,34 @@ bool operator!=(const Vector3f& a, const Vector3f& b) {
     return (a.x != b.x) && (a.y != b.y) && (a.z != b.z);
 }
 
-int main()
-{
-    cout << "start of main" << endl;
 
-    // user constructor set values
-    Vector3f a(2.0, 4.0, 5.0);
-    cout << "Vector a: (" << a.x << " , " << a.y << " , " << a.z << " ) \n";
+TEST_CASE("Vector3f tests", "[Vector3f]") {
+   //this should be the default constructor
+    Vector3f data;
+    //user inputer constructor
+    Vector3f userData(3.1, 4.1, 5.9);
+    //copy constructor
+    Vector3f copy(1.2, 3.4, 5.6);
+    Vector3f copy2(copy);
 
-    //vector b using copy constructor to make a copy of a
-    Vector3f b(a);
-    cout << "Vector b: (" << b.x << " , " << b.y << " , " << b.z << " ) \n";
+    //this tests the default constructor which sets vals to zero
+    REQUIRE(data.x == 0);
+    REQUIRE(data.y == 0);
+    REQUIRE(data.z == 0);
 
-    //default constructor called and used  for c
-    Vector3f c;
-    cout << "Vector c: (" << c.x << " , " << c.y << " , " << c.z << " ) \n";
+    //test the user input constructors data
+    //note approx added to prevent failed test
+    REQUIRE(userData.x == Approx(3.1));
+    REQUIRE(userData.y == Approx(4.1));
+    REQUIRE(userData.z == Approx(5.9));
 
-    if (a == a) { cout << "call operator returns true" << endl; }
-    if (a != b) { cout << "call operator != returns true" << endl; }
+    //now testing the copy constructor
+    REQUIRE(copy2.x ==Approx( 1.2));
+    REQUIRE(copy2.y == Approx(3.4));
+    REQUIRE(copy2.z ==Approx( 5.6));
 
-    cout << "end of main" << endl;
+    //make sure data is correct
+    REQUIRE(data != userData);
+    REQUIRE(copy2 == copy);
+
 }
