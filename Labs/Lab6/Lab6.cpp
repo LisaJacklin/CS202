@@ -15,7 +15,6 @@ Write a test that checks:
 - user constructor allows values to be set to some val.
 - copy constructor copies members to each other
 - euqality/inequality operators work
-
 */
 
 #include <iostream>
@@ -66,12 +65,20 @@ int main()
 {
     cout << "start of main" << endl;
 
+    // user constructor set values
     Vector3f a(2.0, 4.0, 5.0);
-    cout << a << endl;
+    cout << "Vector a: (" << a.x << " , " << a.y << " , " << a.z << " ) \n";
 
-    Vector3f b(5.0);
-    cout << b << endl;
+    //vector b using copy constructor to make a copy of a
+    Vector3f b(a);
+    cout << "Vector b: (" << b.x << " , " << b.y << " , " << b.z << " ) \n";
 
+    //default constructor called and used  for c
+    Vector3f c;
+    cout << "Vector c: (" << c.x << " , " << c.y << " , " << c.z << " ) \n";
+
+    if (a == a) { cout << "call operator returns true" << endl; }
+    if (a != b) { cout << "call operator != returns true" << endl; }
 
     cout << "end of main" << endl;
 }
