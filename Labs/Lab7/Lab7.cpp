@@ -17,7 +17,6 @@ code:
 const Foo f;
 cout << f << endl;
 note that foo is the class name
-
 2. operation should also print the value of data members in class
 
 */
@@ -27,7 +26,6 @@ public:
     //float memebers
     //note these members are not private because of the bool operators
     float x, y, z;
-
     // default constructor sets members  to zero
     Vector3f() : x(0.0), y(0.0), z(0.0) {
         cout << "default constructor" << endl;
@@ -43,7 +41,6 @@ public:
         x = original.x;
         y = original.y;
         z = original.z;
-
         cout << "copy constructor" << endl;
     }
     ~Vector3f() {
@@ -65,6 +62,9 @@ int main()
     const Vector3f f;
     cout << f << endl;
     
+    Vector3f a(3.1, 2.5, 7.4);
+    cout << a << endl;
+
     cout << "end of main" << endl;
 }
 
