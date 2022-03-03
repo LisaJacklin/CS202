@@ -23,6 +23,7 @@ Requirements:
 
 
 //now a class
+//FIX THIS WILL NOT EXECUTE
 class count {
 public:
 	count() {
@@ -40,7 +41,6 @@ private:
 };
 
 //create a function with a static variable w/o an object
-//FIX THIS WILL NOT EXECUTE
 void staticCounter() {
 	 static int counter = 0;
 
