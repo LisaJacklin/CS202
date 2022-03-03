@@ -1,5 +1,7 @@
-// Lab8.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// Lab8.cpp
+//Lisa Jacklin
+//CS 202
+// 3/1/2022
 
 #include <iostream>
 
