@@ -5,6 +5,10 @@
 //
 
 #include <iostream>
+#include "Complex.hpp"
+
+using std::cout;
+using std::endl;
 
 /*
 Requirements:
@@ -25,8 +29,12 @@ cout << 1+Complex (2,3) << endl;
 member function for operator +;
 */
 
-int main()
-{
-    std::cout << "Hello World!\n";
-}
+int main() {
+    Complex c(4, 8);
+    cout << c << endl;
 
+    //sample code to use and some variations
+    cout << 1 + Complex(2, 3) << endl;
+    cout << 1.0 + Complex(2, 3) << endl;
+    cout << c + Complex(2, 3) << endl;
+}
