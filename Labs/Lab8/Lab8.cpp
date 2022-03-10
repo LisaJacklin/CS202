@@ -19,30 +19,27 @@ Requirements:
   - prints the number of objects and show how to call w/o object.
 */
 
-//creating a constant global variable.
-namespace {
-	static int global = 0;
-}
-
 //now a class
 class countThings {
 public:
 	countThings() {
 		cout << "default constructor being called" << endl;
 		_numberClass++;
+		//cout << "There is now " << _numberClass << " stuff in existence" << endl;
 	}
 
 	~countThings() {
 		cout << "destructor" << endl;
 		_numberClass--;
+		//cout << "There is now " << _numberClass << " stuff in existence" << endl;
 	}
 
 	static int classCount() {
+		cout << _numberClass << endl;
 		return _numberClass;
-		cout << "Number Of Existing Class Objects: " << _numberClass << endl;
 	}
 private:
-	static int _numberClass;
+	 static int _numberClass;
 };
 
 //create a function with a static variable w/o an object
@@ -63,17 +60,16 @@ int main()
 {
 	cout << "start of main" << endl;
 
-	staticCounter();
-
-	countThings a;
-	countThings b;
+	countThings a = countThings();
+	countThings b = countThings();
 
 	staticCounter();
-
-	global = 6;
-
+	staticCounter();
+	staticCounter();
 	staticCounter();
 
+	//countThings::classCount();
+	cout << "Number Of Existing Class Objects: " << countThings::classCount << endl;
 	cout << "end of main " << endl;
 }
 
