@@ -23,8 +23,6 @@ Notes:
 - time program w/ linetotoken/readline and w/ printtokens.
 
 - have program determine which choise to use by checking the command line
-
-
 */
 
 #include <iostream>
@@ -32,6 +30,8 @@ Notes:
 #include <vector>
 using std::vector;
 using std::string;
+using std::istream;
+using std::ostream;
 using std::cout;
 using std::endl;
 
@@ -41,8 +41,8 @@ struct TokenAndPosition {
 	unsigned int _column;
 };
 vector<string> lineToTokens(const string& line);
-vector<TokenAndPosition> readLines(std::istream& is);
-void printTokens(std::ostream& os, const vector<TokenAndPosition>& tokens);
+vector<TokenAndPosition> readLines(istream& is);
+void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
 
 int main()
 {
