@@ -14,6 +14,17 @@ Requirements:
 -diference in time if you skip the output?
 -measure in MB/second
 
+
+Notes: 
+- use find member in string class to find positions;
+   - readline reads token first with linetotoken then find member
+
+- because we may reuse this code later, work with std::istream and std::ostream.
+- time program w/ linetotoken/readline and w/ printtokens.
+
+- have program determine which choise to use by checking the command line
+
+
 */
 
 #include <iostream>
