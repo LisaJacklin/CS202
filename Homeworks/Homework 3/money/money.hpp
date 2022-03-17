@@ -114,10 +114,12 @@ Money operator+(const Money& one, const Money& two) {
 	return temporary;
  }
 Money operator-(const Money& one, const Money& two) {
-
+	auto temp = one;
+	temp.value -= two.value;
+	return temp;
  }
 Money operator*(const Money& one, const double two) {
-
+	return one * two;
  }
 
 //Stream Operators
