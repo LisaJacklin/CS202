@@ -5,40 +5,33 @@
 #include <iostream>
 #include <chrono>
 
+#include <ctime>
+#include <vector>
+#include <string>
+#include <random>
+#include <algorithm>
+
+using std::cout;
+using std::endl;
+
 //create StopWatch class
 class StopWatch {
+//probably better to start with the base line 
+	//rather than the mess my HW1 code is...
 private:
-    //time in second sand milliseconds as doubles
-    //double seconds;
-    //double milliseconds;
-
-    //data members created
-    std::chrono::time_point<std::chrono::system_clock> _start, _end;
+	//chrono using a system clock to mark variables start and stop
+	std::chrono::time_point<std::chrono::system_clock> _start;
+	std::chrono::time_point<std::chrono::system_clock> _endl;
 
 public:
+	StopWatch() {
+		//use this default constructor to start the timer
+	}
 
-    StopWatch() {
-        //begins the stopwatch
-        _start = std::chrono::system_clock::now();
+	//now, a function that stops the stopwatch
+	void stop() {
 
-        std::cout << " timer began\n";
-    }
-
-    ~StopWatch() {
-        _end = std::chrono::system_clock::now();
-        //measures the time between start and finish as a double
-        std::chrono::duration<double> elapsed_seconds = _end - _start;
-
-        std::cout << "Stopwatch stopped\n";
-        //both values should be shown in doubles
-        //prints out the process time in milliseconds and seconds ( chrono clock standard) 
-        std::cout << " Process time: " << std::chrono::milliseconds(1).count() << " ms\n";
-        //note elapsed_seconds comes from line 27.
-        std::cout << "Process time: " << elapsed_seconds.count() << "s\n";
-
-    }
-
-
+	}
 };
 
 #endif
