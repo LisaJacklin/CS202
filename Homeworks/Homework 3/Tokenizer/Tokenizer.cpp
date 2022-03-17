@@ -51,32 +51,6 @@ vector<string> lineToTokens(const string& line);
 vector<TokenAndPosition> readLines(istream& is);
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
 
-vector<TokenAndPosition> readLines(istream& is) {
-	vector<TokenAndPosition> readMe;
-	int line = 0; //starts at line zero
-	string lines; //and is given a string value
-
-	while (true) {
-		getline(is, lines); //pulls the stream and the line
-		if (!is) {
-			if (is.eof()) {
-				//were have finished reading the files
-				break;
-			}
-			//something went wrong...
-			return readMe;
-		}
-
-		//now to read the lines if no errors and eof occur
-		line++;
-		//this calls to another vector that is built above
-		vector<string> tokens = linestoTokens(lines);
-		for (string s : tokens) {
-			
-
-		}
-	}
-}
 vector<string> linestoTokens(const string& line) {
 	vector<string> readMe;
 	//the code below will help me finish readlines function
@@ -99,9 +73,43 @@ vector<string> linestoTokens(const string& line) {
 
 	}
 }
+vector<TokenAndPosition> readLines(istream& is) {
+	vector<TokenAndPosition> readMe;
+	int line = 0; //starts at line zero
+	string lines; //and is given a string value
+
+	while (true) {
+		getline(is, lines); //pulls the stream and the line
+		if (!is) {
+			if (is.eof()) {
+				//were have finished reading the files
+				break;
+			}
+			//something went wrong...
+			return readMe;
+		}
+
+		//now to read the lines if no errors and eof occur
+		line++;
+		//this calls to another vector that is built above
+		vector<string> tokens = linestoTokens(lines);
+		for (string s : tokens) {
+			//now, using code from linestotokens,
+			Token t;
+			t.token = s;
+			t.line = lineNum;
+			t.column = line.find(t.token);
+			toRet.push_back(t);
+		}
+	}
+}
+
 
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens) {
-
+	for (Token t : tokens) {
+		os << "line " << t.line << ", Column " << t.column << " : \ " << t.token
+			<< " \ " << endl;
+	}
 }
 
 int main()
