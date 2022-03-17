@@ -21,16 +21,27 @@ class StopWatch {
 private:
 	//chrono using a system clock to mark variables start and stop
 	std::chrono::time_point<std::chrono::system_clock> _start;
-	std::chrono::time_point<std::chrono::system_clock> _endl;
+	std::chrono::time_point<std::chrono::system_clock> _end;
+
+	//now, setting durations to doubles with variable names
+	std::chrono::duration<double> _elapsedSeconds;
+	std::chrono::duration<double, std::milli> _elapsedMillis;
 
 public:
 	StopWatch() {
 		//use this default constructor to start the timer
+		_start = std::chrono::system_clock::now();
 	}
 
 	//now, a function that stops the stopwatch
 	void stop() {
+		_end = std::chrono::system_clock::now();
 
+		//now, this stopwatch measured the time it took in
+		//seconds
+		_elapsedSeconds = _end - _start;
+		//and milliseconds
+		_elapsedMillis = _end - _start;
 	}
 };
 
