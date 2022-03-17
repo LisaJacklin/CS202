@@ -120,10 +120,19 @@ Money operator*(const Money& one, const double two) {
 std::ostream& operator<<(std::ostream& one, const Money& coins) {
 	int value = coins.value;
 	bool Negative = value < 0;
+	//need to make sure to include negative option!
 	if (Negative) {
 		one << " - ";
 		value *= -1;
 	}
+
+	//and now to make sure it displays as a dollar value
+	one << "$" << (value / 100) << ".";
+	if (value % 100 < 10) {
+		one << "0" << (value % 100);
+	}
+	else one << (value % 100);
+	return one;
  }
 
 #endif
