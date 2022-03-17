@@ -78,7 +78,26 @@ vector<TokenAndPosition> readLines(istream& is) {
 	}
 }
 vector<string> linestoTokens(const string& line) {
-	 
+	vector<string> readMe;
+	//the code below will help me finish readlines function
+	istringstream is(line);
+	string token;
+
+	while (true) {
+		//is takes in the token values from the text.
+		is >> token;
+		//once again, testing to make sure that the istringstream 
+		//isn't have errors or at the eof.
+		if (!is) {
+			if (is.eof()) {
+				break;
+			}
+			else return readMe;
+		}
+		//pushes the token value to the vector
+		readMe.push_back(token);
+
+	}
 }
 
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens) {
