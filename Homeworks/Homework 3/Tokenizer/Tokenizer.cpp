@@ -54,10 +54,10 @@ void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
 vector<TokenAndPosition> readLines(istream& is) {
 	vector<TokenAndPosition> readMe;
 	int line = 0; //starts at line zero
-	string line; //and is given a string value
+	string lines; //and is given a string value
 
 	while (true) {
-		getline(is, line); //pulls the stream and the line
+		getline(is, lines); //pulls the stream and the line
 		if (!is) {
 			if (is.eof()) {
 				//were have finished reading the files
@@ -67,10 +67,15 @@ vector<TokenAndPosition> readLines(istream& is) {
 			return readMe;
 		}
 
-	
+		//now to read the lines if no errors and eof occur
+		line++;
+		//this calls to another vector that is built above
+		vector<string> tokens = linestoTokens(lines);
+		for (string s : tokens) {
+			
 
+		}
 	}
-
 }
 vector<string> linestoTokens(const string& line) {
 	 
