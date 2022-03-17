@@ -32,6 +32,10 @@ public:
 		//use this default constructor to start the timer
 		_start = std::chrono::system_clock::now();
 	}
+	//start a function for starting as well
+	void start() {
+		_start = std::chrono::system_clock::now();
+	}
 
 	//now, a function that stops the stopwatch
 	void stop() {
@@ -42,6 +46,15 @@ public:
 		_elapsedSeconds = _end - _start;
 		//and milliseconds
 		_elapsedMillis = _end - _start;
+	}
+
+	//now for elapsed time
+	double getElapsedSeconds() {
+
+	}
+	
+	double getElapsedMillis() {
+
 	}
 };
 
