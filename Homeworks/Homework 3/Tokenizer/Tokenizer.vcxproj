@@ -145,6 +145,7 @@
     <Text Include="tokenizer.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Stopwatch.hpp" />
     <ClInclude Include="tokenizer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

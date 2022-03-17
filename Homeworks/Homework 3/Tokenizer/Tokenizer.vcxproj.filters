@@ -28,5 +28,8 @@
     <ClInclude Include="tokenizer.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Stopwatch.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
