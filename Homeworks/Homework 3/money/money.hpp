@@ -36,6 +36,7 @@ using std::cout;
 using std::endl;
 
 class Money {
+
 	//Boolean Operators
 	friend bool operator==(const Money& one, const Money& two);
 	friend bool operator!=(const Money& one, const Money& two);
@@ -54,17 +55,26 @@ class Money {
 	friend std::ostream& operator<<(std::ostream&, const Money&);
 
 private: 
+	//data for money value
 	int value;
 public:
 	//no money constructor
 	Money() : value(0) {
 
 	}
+	//money value turns to value of i
+	Money(int i) : value(i) {
+
+	}
 
 	//constructor that takes a double
 	Money(double d) {
+		cout << d << endl;
 
+		//sets a cents value to a dollar value
+		d *= 100;
 	}
+
 	//constructor that takes dollars and cents
 	Money(int d, int c) {
 
@@ -107,6 +117,13 @@ Money operator*(const Money& one, const double two) {
  }
 
 //Additional Operators
-friend std::ostream& operator<<(std::ostream&, const Money&);
+std::ostream& operator<<(std::ostream& one, const Money& coins) {
+	int value = coins.value;
+	bool Negative = value < 0;
+	if (Negative) {
+		one << " - ";
+		value *= -1;
+	}
+ }
 
 #endif
