@@ -81,6 +81,13 @@ public:
 		value += c; //sets value in cents
 	}
 
+// other operators that can be defined within the class!!!
+	Money& operator += (const Money& two) {
+		value += two.value;
+		return *this;
+}
+
+
 };
 
 //Boolean Operators
@@ -109,7 +116,7 @@ bool operator<=(const Money& one, const Money& two) {
 //Math Operators
 Money operator/(const Money& one, const double two) {
 	auto temporary = one;
-	temporary/ = two;
+	temporary/= two;
 	return temporary;
  }
 Money operator+(const Money& one, const Money& two) {
@@ -123,7 +130,6 @@ Money operator-(const Money& one, const Money& two) {
 	return temp;
  }
 Money operator*(const Money& one, const double two) {
-	//can all the other operators be simplified as such?
 	auto temp = one;
 	temp.value *= two;
 	return temp;
