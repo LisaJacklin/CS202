@@ -86,7 +86,10 @@ public:
 		value += two.value;
 		return *this;
 }
-
+	Money& operator -=(const Money& two) {
+		value -= two.value;
+		return *this;
+	}
 
 };
 
@@ -116,7 +119,7 @@ bool operator<=(const Money& one, const Money& two) {
 //Math Operators
 Money operator/(const Money& one, const double two) {
 	auto temporary = one;
-	temporary/= two;
+	temporary/= two; //this uses an operator defined in Money class
 	return temporary;
  }
 Money operator+(const Money& one, const Money& two) {
