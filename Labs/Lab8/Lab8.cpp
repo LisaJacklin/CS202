@@ -35,7 +35,7 @@ public:
 	}
 
 	static int classCount() {
-		cout << _numberClass << endl;
+		//cout << _numberClass << endl;
 		return _numberClass;
 	}
 private:
