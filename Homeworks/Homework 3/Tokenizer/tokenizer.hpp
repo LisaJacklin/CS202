@@ -12,6 +12,7 @@ using std::vector;
 using std::string;
 using std::istream;
 using std::ostream;
+
 using std::getline;
 using std::istringstream;
 using std::cout;
@@ -50,11 +51,11 @@ vector<string> linestoTokens(const string& line) {
 }
 vector<TokenAndPosition> readLines(istream& is) {
 	vector<TokenAndPosition> readMe;
-	int line = 0; //starts at line zero
-	string lines; //and is given a string value
+	int lineNumber = 0; //starts at line zero
+	string line; //and is given a string value
 
 	while (true) {
-		getline(is, lines); //pulls the stream and the line
+		getline(is, line); //pulls the stream and the line
 		if (!is) {
 			if (is.eof()) {
 				//were have finished reading the files
@@ -65,23 +66,24 @@ vector<TokenAndPosition> readLines(istream& is) {
 		}
 
 		//now to read the lines if no errors and eof occur
-		line++;
+		lineNumber++;
 		//this calls to another vector that is built above
-		vector<string> tokens = linestoTokens(lines);
+		vector<string> tokens = linestoTokens(line);
 		for (string s : tokens) {
 			//now, using code from linestotokens,
-			Token t;
+			TokenAndPosition t;
 			t.token = s;
-			t.line = lineNum;
+			t.line = lineNumber;
 			t.column = line.find(t.token);
-			toRet.push_back(t);
+			readMe.push_back(t);
 		}
 	}
 }
 
 
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens) {
-	for (Token t : tokens) {
+	for (TokenAndPosition t : tokens) { // for each token
+		//the ostream prints a line
 		os << "line " << t.line << ", Column " << t.column << " : \ " << t.token
 			<< " \ " << endl;
 	}
