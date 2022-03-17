@@ -50,6 +50,7 @@ public:
 
 	//now for elapsed time
 	double getElapsedSeconds() {
+		//this simply returns the value
 		return _elapsedSeconds.count();
 	}
 	
