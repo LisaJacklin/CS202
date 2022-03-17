@@ -23,6 +23,8 @@ struct TokenAndPosition {
 	int line;
 	unsigned int column;
 };
+
+//function and vector declarations
 vector<string> lineToTokens(const string& line);
 vector<TokenAndPosition> readLines(istream& is);
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
@@ -79,7 +81,6 @@ vector<TokenAndPosition> readLines(istream& is) {
 		}
 	}
 }
-
 
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens) {
 	for (TokenAndPosition t : tokens) { // for each token

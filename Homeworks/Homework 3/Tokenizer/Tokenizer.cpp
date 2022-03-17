@@ -27,10 +27,42 @@ Notes:
 
 #include <iostream>
 #include "tokenizer.hpp"
+#include <fstream>
 
-int main()
+using std::cout;
+using std::endl;
+
+//command line main...
+//remember, argc is amount of arguments, argv is the array of them.
+int main(int argc, char** argv)
 {
-	cout << "start of main" << endl;
+	//this allows for a file to be read and taken as an argument
+	//rather than standard input
+	bool file = false;
+	string filename = ""; //allows you to insert a file name 
+	bool printing = true;
 
-	cout << "end of main" << endl;
+	//if i is less than the amount of arguments
+	for (int i = 1; i < argc; i++) {
+		printing = false;
+	}
+	else {
+	 //if the file is large enough to be considered for printing
+	 filename = argv[i];
+	 file = true;
+	}
+
+	//now, more on printing the file
+	//if the string from the files says linesonly, it will not print
+	if (string(argv[i]) == "--lineonly") {
+		printing = false;
+	}
+	else {
+		//if --lineonly is not included in the file
+		fileName = argv[i];
+		fileMode = true;
+	}
+
+	//now...to include a stopwatch function...
+
 }
