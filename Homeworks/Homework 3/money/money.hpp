@@ -109,7 +109,9 @@ Money operator/(const Money& one, const double two) {
 	return temporary;
  }
 Money operator+(const Money& one, const Money& two) {
-
+	auto temporary = one;
+	temporary.value += two.value; // value is amount of money in cents
+	return temporary;
  }
 Money operator-(const Money& one, const Money& two) {
 
