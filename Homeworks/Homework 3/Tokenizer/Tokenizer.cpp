@@ -27,6 +27,7 @@ Notes:
 
 #include <iostream>
 #include "tokenizer.hpp"
+#include "Stopwatch.hpp"
 #include <fstream>
 
 using std::cout;
