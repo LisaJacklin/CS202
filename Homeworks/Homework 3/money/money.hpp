@@ -88,25 +88,28 @@ bool operator==(const Money& one, const Money& two) {
 	return one.value == two.value;
  }
 bool operator!=(const Money& one, const Money& two) {
-	return one.value != two.value;
+	//return one.value != two.value;
+	return !(one == two); //values are not equal
  }
 bool operator>(const Money& one, const Money& two) {
 	return one.value > two.value;
  }
 bool operator<(const Money& one, const Money& two) {
-	return one.value < two.value;
+	return !(one>two || one == two) ;
  }
 bool operator>=(const Money& one, const Money& two) {
-	return one.value >= two.value;
+	//return one.value >= two.value;
+	return one > two || one == two;
  }
 bool operator<=(const Money& one, const Money& two) {
-	return one.value <= two.value;
+	//return one.value <= two.value;
+	return one == two || one < two;
  }
 
 //Math Operators
 Money operator/(const Money& one, const double two) {
 	auto temporary = one;
-	temporary /= two;
+	temporary/ = two;
 	return temporary;
  }
 Money operator+(const Money& one, const Money& two) {
@@ -121,8 +124,15 @@ Money operator-(const Money& one, const Money& two) {
  }
 Money operator*(const Money& one, const double two) {
 	//can all the other operators be simplified as such?
-	return one * two;
+	auto temp = one;
+	temp.value *= two;
+	return temp;
  }
+
+//need another *operator
+Money operator* (const Money& one, const Money& two) {
+	return one * two;
+}
 
 //Stream Operators
 std::ostream& operator<<(std::ostream& one, const Money& coins) {
