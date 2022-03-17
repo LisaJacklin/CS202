@@ -26,8 +26,9 @@ Notes:
 */
 
 #include <iostream>
-#include <sstream>
+#include <fstream>
 #include <vector>
+
 using std::vector;
 using std::string;
 using std::istream;
@@ -35,6 +36,7 @@ using std::ostream;
 using std::cout;
 using std::endl;
 
+//SEPARATE INTO CORRECT FILES
 struct TokenAndPosition {
 	string _token;
 	int _line;
@@ -43,6 +45,17 @@ struct TokenAndPosition {
 vector<string> lineToTokens(const string& line);
 vector<TokenAndPosition> readLines(istream& is);
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
+
+vector<TokenAndPosition> readLines(istream& is) {
+
+}
+vector<string> linestoTokens(const string& line) {
+
+}
+
+void printTokens(ostream& os, const vector<TokenAndPosition>& tokens) {
+
+}
 
 int main()
 {
