@@ -104,7 +104,9 @@ bool operator<=(const Money& one, const Money& two) {
 
 //Math Operators
 Money operator/(const Money& one, const double two) {
-
+	auto temporary = one;
+	temporary /= two;
+	return temporary;
  }
 Money operator+(const Money& one, const Money& two) {
 
@@ -116,7 +118,7 @@ Money operator*(const Money& one, const double two) {
 
  }
 
-//Additional Operators
+//Stream Operators
 std::ostream& operator<<(std::ostream& one, const Money& coins) {
 	int value = coins.value;
 	bool Negative = value < 0;
@@ -132,7 +134,7 @@ std::ostream& operator<<(std::ostream& one, const Money& coins) {
 		one << "0" << (value % 100);
 	}
 	else one << (value % 100);
-	return one;
+	return one; //returns the stream values
  }
 
 #endif
