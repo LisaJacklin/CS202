@@ -50,11 +50,11 @@ public:
 
 	//now for elapsed time
 	double getElapsedSeconds() {
-
+		return _elapsedSeconds.count();
 	}
 	
 	double getElapsedMillis() {
-
+		return _elapsedMillis.count();
 	}
 };
 
