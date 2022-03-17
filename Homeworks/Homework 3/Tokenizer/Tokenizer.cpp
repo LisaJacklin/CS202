@@ -26,13 +26,18 @@ Notes:
 */
 
 #include <iostream>
-#include <fstream>
+#include <ostream>
+#include <istream>
+#include <sstream>
 #include <vector>
+#include <string>
 
 using std::vector;
 using std::string;
 using std::istream;
 using std::ostream;
+using std::getline;
+using std::istringstream;
 using std::cout;
 using std::endl;
 
@@ -47,6 +52,24 @@ vector<TokenAndPosition> readLines(istream& is);
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
 
 vector<TokenAndPosition> readLines(istream& is) {
+	vector<TokenAndPosition> readMe;
+	int line = 0; //starts at line zero
+	string line; //and is given a string value
+
+	while (true) {
+		getline(is, line); //pulls the stream and the line
+		if (!is) {
+			if (is.eof()) {
+				//were have finished reading the files
+				break;
+			}
+			//something went wrong...
+			return readMe;
+		}
+
+	
+
+	}
 
 }
 vector<string> linestoTokens(const string& line) {
