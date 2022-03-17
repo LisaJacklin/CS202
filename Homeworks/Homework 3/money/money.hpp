@@ -84,22 +84,22 @@ public:
 
 //Boolean Operators
 bool operator==(const Money& one, const Money& two) {
-
+	return one.value == two.value;
  }
 bool operator!=(const Money& one, const Money& two) {
-
+	return one.value != two.value;
  }
 bool operator>(const Money& one, const Money& two) {
-
+	return one.value > two.value;
  }
 bool operator<(const Money& one, const Money& two) {
-
+	return one.value < two.value;
  }
 bool operator>=(const Money& one, const Money& two) {
-
+	return one.value >= two.value;
  }
 bool operator<=(const Money& one, const Money& two) {
-
+	return one.value <= two.value;
  }
 
 //Math Operators
@@ -119,6 +119,7 @@ Money operator-(const Money& one, const Money& two) {
 	return temp;
  }
 Money operator*(const Money& one, const double two) {
+	//can all the other operators be simplified as such?
 	return one * two;
  }
 
