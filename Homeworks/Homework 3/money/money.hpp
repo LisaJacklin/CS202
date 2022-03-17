@@ -77,7 +77,8 @@ public:
 
 	//constructor that takes dollars and cents
 	Money(int d, int c) {
-
+		value = d * 100; //sets dolar value
+		value += c; //sets value in cents
 	}
 
 };
