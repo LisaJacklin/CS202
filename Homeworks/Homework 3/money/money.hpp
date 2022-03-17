@@ -73,6 +73,10 @@ public:
 
 		//sets a cents value to a dollar value
 		d *= 100;
+		if (d < 0) value = (int)(d - 0.5);
+		else value = (int)(d + 0.5);
+
+		cout << value << endl;
 	}
 
 	//constructor that takes dollars and cents
@@ -143,10 +147,10 @@ Money operator*(const Money& one, const double two) {
 	auto temp = one;
 	temp.value *= two;
 	return temp;
- }
+}
 
 //need another *operator
-Money operator* (const Money& one, const Money& two) {
+Money operator*(const double two, const Money& one) {
 	return one * two;
 }
 
@@ -156,7 +160,7 @@ std::ostream& operator<<(std::ostream& one, const Money& coins) {
 	bool Negative = value < 0;
 	//need to make sure to include negative option!
 	if (Negative) {
-		one << " - ";
+		one << "-";
 		value *= -1;
 	}
 
