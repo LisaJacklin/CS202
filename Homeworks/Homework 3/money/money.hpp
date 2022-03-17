@@ -90,7 +90,14 @@ public:
 		value -= two.value;
 		return *this;
 	}
-
+	Money& operator /=(const double two) {
+		value /= two;
+		return *this;
+	}
+	Money& operator *= (const double two) {
+		value *= two;
+		return *this;
+	}
 };
 
 //Boolean Operators
