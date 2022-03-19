@@ -35,35 +35,45 @@ using std::endl;
 
 //command line main...
 //remember, argc is amount of arguments, argv is the array of them.
-int main(int argc, char** argv)
-{
-	//this allows for a file to be read and taken as an argument
-	//rather than standard input
-	bool file = false;
-	string filename = ""; //allows you to insert a file name 
-	bool printing = true;
 
-	//if i is less than the amount of arguments
-	for (int i = 1; i < argc; i++) {
-		printing = false;
-	}
-	else {
-	 //if the file is large enough to be considered for printing
-	 filename = argv[i];
-	 file = true;
-	}
+int main(int argc, char** argv) {
+    //this allows for files! 
+    bool fileMode = false;
+    string fileName = "";
+    bool printing = true;
 
-	//now, more on printing the file
-	//if the string from the files says linesonly, it will not print
-	if (string(argv[i]) == "--lineonly") {
-		printing = false;
-	}
-	else {
-		//if --lineonly is not included in the file
-		fileName = argv[i];
-		fileMode = true;
-	}
+    for (int i = 1; i < argc; i++) {
 
-	//now...to include a stopwatch function...
+        if (string(argv[i]) == "--lineonly") {
+            printing = false;
+        }
+        else {
+            //must be file name
+            fileName = argv[i];
+            fileMode = true;
+        }
+
+    }
+
+    if (!fileMode) {
+        cout << "Expected a file as parameter" << endl;
+        return 0;
+    }
+    //now, taking data that is given in the standard form...
+
+
+    vector<lineToTokens> tokens;
+    std::ifstream is(fileName);
+
+    //and we start adding a timer too
+    StopWatch watch;
+    tokens = readLines(is);
+
+    if (printing) {
+        printTokens(cout, tokens);
+    }
+    watch.stop();
+
+    cout << "Took " << watch.getElapsedSeconds() << " seconds" << endl;
 
 }
