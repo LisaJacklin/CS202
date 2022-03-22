@@ -69,7 +69,7 @@ int main()
 	staticCounter();
 
 	//countThings::classCount();
-	cout << "Number Of Existing Class Objects: " << countThings::classCount << endl;
+	cout << "Number Of Existing Class Objects: " <<countThings::classCount() << endl;
 	cout << "end of main " << endl;
 }
 
