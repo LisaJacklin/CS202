@@ -26,5 +26,8 @@
     <ClInclude Include="tokenizer.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="bookread.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
