@@ -1,20 +1,35 @@
-// Bookread.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Bookread.cpp 
+// Lisa Jacklin
+// CS 202 MT code 1
+// 3/24/2022
 //
 
 #include <iostream>
+using std::cout;
+using std::endl;
+
+/*
+Requirements: 
+- HW3 additional program 1!!!
+- program that reads a book (project gutenberg)
+- outputs the text based on a given character wrapping  value.
+
+Notes:
+- use a wrap of 50 to start with.
+- use the HW3 tokenizer to help with this program!
+
+HW3AP1 Notes:
+std::vector <std::string> paragraphs;
+- have a vector with two strings; ( tokenizer rids extra space)
+
+*/
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	cout << "start of main" << endl;
+
+
+	cout << "end of main" << endl;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
