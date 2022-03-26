@@ -18,16 +18,22 @@ using std::istringstream;
 using std::cout;
 using std::endl;
 
+//changed from a struct to a class
+class TokenAndPosition {
+	vector <string> token;
+	vector <int> line;
+	vector <unsigned int> column;
 
-struct TokenAndPosition {
-	string token;
-	int line;
-	unsigned int column;
+public: 
+
+private: 
 };
 
 //function and vector declarations
-vector<string> lineToTokens(const string& line);
-vector<TokenAndPosition> readLines(istream& is);
+
+//vector<string> lineToTokens(const string& line); now in class
+//vector<TokenAndPosition> readLines(istream& is); now in class
+
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
 
 vector<string> linestoTokens(const string& line) {

@@ -60,4 +60,15 @@ int main(int argc, char** argv) {
     }
     //now, taking data that is given in the standard form...
 
+
+    //vector<lineToTokens> tokens;
+    //std::ifstream is(fileName);
+
+    ////and we start adding a timer too
+    //tokens = readLines(is);
+
+    //if (printing) {
+    //    printTokens(cout, tokens);
+    //}
+  
 }
