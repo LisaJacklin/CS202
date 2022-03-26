@@ -25,11 +25,39 @@ std::vector <std::string> paragraphs;
 */
 
 
-int main()
-{
-	cout << "start of main" << endl;
+#include <iostream>
+#include "bookread.hpp"
+#include <fstream>
 
+using std::cout;
+using std::endl;
 
-	cout << "end of main" << endl;
+//command line main...
+//remember, argc is amount of arguments, argv is the array of them.
+
+int main(int argc, char** argv) {
+    //this allows for files! 
+    bool fileMode = false;
+    string fileName = "980.txt";
+    bool printing = true;
+
+    for (int i = 1; i < argc; i++) {
+
+        if (string(argv[i]) == "--lineonly") {
+            printing = false;
+        }
+        else {
+            //must be file name
+            fileName = argv[i];
+            fileMode = true;
+        }
+
+    }
+
+    if (!fileMode) {
+        cout << "Expected a file as parameter" << endl;
+        return 0;
+    }
+    //now, taking data that is given in the standard form...
+
 }
-
