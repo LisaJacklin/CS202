@@ -75,15 +75,14 @@ vector<string> lineToTokens(const string& line) {
 }
 
 
-void printTokens(ostringstream& os, vector<Token>& tokens) {
+void printTokens(ostream& os, vector<Token>& tokens) {
     // vector<Token> tokens;
     for (Token t : tokens) {
         //okay now, a wrapping function to make the words fit the correct requirements.
-        int characters = 1;
-        if (characters < 50) {
+        int characters = 50;
+        if (t.token.length() < characters) {
             os << t.token << " ";
             size_t space_left = characters - t.token.length();
-            characters++;
             if (space_left < t.token.length() + 1) {
                 os << " " << t.token;
                 space_left -= t.token.length() + 1;
@@ -91,7 +90,7 @@ void printTokens(ostringstream& os, vector<Token>& tokens) {
         }
         else {
             os << "\n" << t.token;
-            int characters = 0;
+            int characters = 50;
         }            
     }
 }

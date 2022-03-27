@@ -60,12 +60,11 @@ int main(int argc, char** argv) {
 
     vector<Token> tokens;
     ifstream is(fileName);
-    ostringstream output;
-
-    //tokens = readLines(is);
+  
+    tokens = readLines(is);
 
     if (printing) {
-       printTokens(output, tokens);
+       printTokens(cout, tokens);
         
     };
 
