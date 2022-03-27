@@ -29,8 +29,7 @@ void printTokens(ostream& os, const vector<Token>& tokens);
 vector <string> paragraphs(const string& text);
 
 vector<Token> readLines(istream& is) {
-
-    vector<Token> toRet;
+    vector<Token> toread;
     int lineNum = 0;
     string line;
 
@@ -43,7 +42,7 @@ vector<Token> readLines(istream& is) {
                 break;
             }
             //bad error
-            return toRet;
+            return toread;
         }
 
         //process
@@ -52,14 +51,10 @@ vector<Token> readLines(istream& is) {
         for (string s : tokens) {
             Token t;
             t.token = s;
-            t.line = lineNum;
-            t.column = line.find(t.token);
-            toRet.push_back(t);
+            toread.push_back(t);
         }
-
     }
-
-    return toRet;
+    return toread;
 
 }
 
@@ -89,11 +84,9 @@ vector<string> lineToTokens(const string& line) {
 void printTokens(ostream& os, const vector<Token>& tokens) {
     for (Token t : tokens) {
         
-        os << t.token;
+        os << t.token << " ";
         //attempting to use this to separate values into about 50 character sections...
-        if (t.token.size() != 50) {
-            os << "\n";
-        }
+       
     }
 }
 
