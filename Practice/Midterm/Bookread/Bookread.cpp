@@ -32,16 +32,17 @@ using std::ifstream;
 using std::cout;
 using std::endl;
 
-int main(int argc, char** argv) {
-    bool fileMode = true;
 
-    string fileName = "readme.txt";
+int main(int argc, char** argv) {
+    //remember this has to be true to read!
+    bool fileMode = true;
+    //file name to read
+    string fileName = "980.txt";
     bool printing = true;
 
     for (int i = 1; i < argc; i++) {
-        //adjusted for additional program 1 
-        if (string(argv[i]) == "--html") {
-      
+
+        if (string(argv[i]) == "--lineonly") {
             printing = false;
         }
         else {
@@ -51,7 +52,7 @@ int main(int argc, char** argv) {
         }
 
     }
-    //error protection
+    //error tester
     if (!fileMode) {
         cout << "Expected a file as parameter" << endl;
         return 0;
@@ -59,10 +60,11 @@ int main(int argc, char** argv) {
 
     vector<Token> tokens;
     ifstream is(fileName);
-    istream& s = is;
 
-    //tokens = paragraphs(s);
+  // Token::readLines(is);
 
-    //Token::printTokens(cout , tokens);
-    
+    if (printing) {
+      //  printTokens(cout, tokens);
+    };
+
 }

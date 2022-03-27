@@ -23,7 +23,31 @@ private:
     vector<int> column;
 public:
 
-    vector <string > paragraphs(istream& is) {
+    friend ostream& operator<< (ostream& out, vector<Token>& a);
+
+    vector <string > paragraphs(const string& line) {
+        vector<string> toRet;
+
+        istringstream is(line);
+        string token;
+
+        while (true) {
+            is >> token;
+            if (!is) {
+                if (is.eof()) {
+                    break;
+                }
+                //Broken, but not much we can do
+                return toRet;
+            }
+
+            toRet.push_back(token);
+        }
+
+        return toRet;
+    }
+
+    vector<string> readLines(istream& is) {
         vector<string> toread;
         int lineNum = 0;
         string paragraph;
@@ -49,28 +73,25 @@ public:
                 //bad error
                 return toread;
             }
-
         }
         return toread;
     }
 
-    void printTokens(ostream& os, const vector<Token> & token) {
-        vector<Token> tokens;
-        for (Token t : tokens) {
+    //void printTokens(ostream& os, vector<Token> & tokens) {
+    //   // vector<Token> tokens;
+    //    
+    //    for (Token t : tokens) {
+    //        
+    //        os << t.token << " ";
+    //        //attempting to use this to separate values into about 50 character sections...
 
-            os << t.tokens << " ";
-            //attempting to use this to separate values into about 50 character sections...
-
-            if (t.tokens.size() >= 50) {
-                os << "\n";
-            }
-
-            /* if (t.token.empty()) {
-                 os << "\n\n";
-             }*/
-        }
-    }
+    //    }
+    //}
 };
 
+ostream& operator<< (ostream& out, vector<Token>& a) {
+    out << a << " ";
+    return out;
+}
 
 #endif
