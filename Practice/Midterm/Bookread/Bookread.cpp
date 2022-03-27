@@ -35,14 +35,13 @@ using std::endl;
 int main(int argc, char** argv) {
     bool fileMode = true;
 
-    string fileName = "980.txt";
+    string fileName = "readme.txt";
     bool printing = true;
 
     for (int i = 1; i < argc; i++) {
         //adjusted for additional program 1 
         if (string(argv[i]) == "--html") {
-            //should change the output paragraphs
-            //with "</p>" tags
+      
             printing = false;
         }
         else {

@@ -28,5 +28,8 @@
     <Text Include="980.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="readme.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
