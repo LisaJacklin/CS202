@@ -4,97 +4,116 @@
 #include <iostream>
 #include <ostream>
 #include <istream>
-#include <sstream>
-#include <vector>
 #include <string>
+#include <vector>
+#include <sstream>
 
-using std::vector;
-using std::string;
-using std::istream;
 using std::ostream;
-
-using std::getline;
+using std::istream;
+using std::string;
+using std::find;
+using std::vector;
 using std::istringstream;
-using std::cout;
-using std::endl;
+using std::getline;
 
-//changed from a struct to a class
-class TokenAndPosition {
-	vector <string> token;
-	vector <int> line;
-	vector <unsigned int> column;
+struct Token {
+    string token;
+    int line;
+    int column;
 
-public: 
-
-private: 
 };
 
-//function and vector declarations
+//vector<string> lineToTokens(const string& line);
+vector<Token> readLines(istream& is);
+void printTokens(ostream& os, const vector<Token>& tokens);
 
-//vector<string> lineToTokens(const string& line); now in class
-//vector<TokenAndPosition> readLines(istream& is); now in class
+//added for 
+vector<string> paragraphs( string& text);
 
-void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
+vector <string> paragraphs(string& text) {
+    vector<string> toRet;
 
-vector<string> linestoTokens(const string& line) {
-	vector<string> readMe;
-	//the code below will help me finish readlines function
-	istringstream is(line);
-	string token;
+    istringstream is(text);
+    string token;
 
-	while (true) {
-		//is takes in the token values from the text.
-		is >> token;
-		//once again, testing to make sure that the istringstream 
-		//isn't have errors or at the eof.
-		if (!is) {
-			if (is.eof()) {
-				break;
-			}
-			else return readMe;
-		}
-		//pushes the token value to the vector
-		readMe.push_back(token);
+    while (true) {
+        is >> token;
+        if (!is) {
+            if (is.eof()) {
+                break;
+            }
+            //Broken, but not much we can do
+            return toRet;
+        }
 
-	}
-}
-vector<TokenAndPosition> readLines(istream& is) {
-	vector<TokenAndPosition> readMe;
-	int lineNumber = 0; //starts at line zero
-	string line; //and is given a string value
+        toRet.push_back(token);
+    }
 
-	while (true) {
-		getline(is, line); //pulls the stream and the line
-		if (!is) {
-			if (is.eof()) {
-				//were have finished reading the files
-				break;
-			}
-			//something went wrong...
-			return readMe;
-		}
-
-		//now to read the lines if no errors and eof occur
-		lineNumber++;
-		//this calls to another vector that is built above
-		vector<string> tokens = linestoTokens(line);
-		for (string s : tokens) {
-			//now, using code from linestotokens,
-			TokenAndPosition t;
-			t.token = s;
-			t.line = lineNumber;
-			t.column = line.find(t.token);
-			readMe.push_back(t);
-		}
-	}
+    return toRet;
 }
 
-void printTokens(ostream& os, const vector<TokenAndPosition>& tokens) {
-	for (TokenAndPosition t : tokens) { // for each token
-		//the ostream prints a line
-		os << "line " << t.line << ", Column " << t.column << " : \ " << t.token
-			<< " \ " << endl;
-	}
+vector<Token> readLines(istream& is) {
+
+    vector<Token> toRet;
+    int lineNum = 0;
+    string line;
+
+    while (true) {
+
+        getline(is, line);
+        if (!is) {
+            if (is.eof()) {
+                //good, we're done
+                break;
+            }
+            //bad error
+            return toRet;
+        }
+
+        //process
+        lineNum++;
+        vector<string> tokens = paragraphs(line);
+        for (string s : tokens) {
+            Token t;
+            t.token = s;
+            toRet.push_back(t);
+        }
+
+    }
+
+    return toRet;
+
 }
+
+void printTokens(ostream& os, const vector<Token>& tokens) {
+    for (Token t : tokens) {
+        os << t.token << " " << endl;
+    }
+}
+#if 0
+vector<string> lineToTokens(const string& line) {
+    vector<string> toRet;
+
+    istringstream is(line);
+    string token;
+
+    while (true) {
+        is >> token;
+        if (!is) {
+            if (is.eof()) {
+                break;
+            }
+            //Broken, but not much we can do
+            return toRet;
+        }
+
+        toRet.push_back(token);
+    }
+
+    return toRet;
+}
+#endif
+
+
 
 #endif

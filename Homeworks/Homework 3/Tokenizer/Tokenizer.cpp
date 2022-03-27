@@ -27,19 +27,18 @@ Notes:
 
 #include <iostream>
 #include "tokenizer.hpp"
-#include "Stopwatch.hpp"
+#include "stopwatch.hpp"
+
 #include <fstream>
 
+using std::ifstream;
 using std::cout;
 using std::endl;
 
-//command line main...
-//remember, argc is amount of arguments, argv is the array of them.
-
 int main(int argc, char** argv) {
-    //this allows for files! 
-    bool fileMode = false;
-    string fileName = "";
+    bool fileMode = true;
+
+    string fileName = "tokenizer.txt";
     bool printing = true;
 
     for (int i = 1; i < argc; i++) {
@@ -59,13 +58,10 @@ int main(int argc, char** argv) {
         cout << "Expected a file as parameter" << endl;
         return 0;
     }
-    //now, taking data that is given in the standard form...
 
+    vector<Token> tokens;
+    ifstream is(fileName);
 
-    vector<lineToTokens> tokens;
-    std::ifstream is(fileName);
-
-    //and we start adding a timer too
     StopWatch watch;
     tokens = readLines(is);
 

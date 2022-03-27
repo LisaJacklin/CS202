@@ -24,26 +24,25 @@ std::vector <std::string> paragraphs;
 
 */
 
-
 #include <iostream>
 #include "bookread.hpp"
 #include <fstream>
 
+using std::ifstream;
 using std::cout;
 using std::endl;
 
-//command line main...
-//remember, argc is amount of arguments, argv is the array of them.
-
 int main(int argc, char** argv) {
-    //this allows for files! 
-    bool fileMode = false;
+    bool fileMode = true;
+
     string fileName = "980.txt";
     bool printing = true;
 
     for (int i = 1; i < argc; i++) {
-
-        if (string(argv[i]) == "--lineonly") {
+        //adjusted for additional program 1 
+        if (string(argv[i]) == "--html") {
+            //should change the output paragraphs
+            //with "</p>" tags
             printing = false;
         }
         else {
@@ -53,22 +52,18 @@ int main(int argc, char** argv) {
         }
 
     }
-
+    //error protection
     if (!fileMode) {
         cout << "Expected a file as parameter" << endl;
         return 0;
     }
-    //now, taking data that is given in the standard form...
 
+    vector<Token> tokens;
+    ifstream is(fileName);
 
-    //vector<lineToTokens> tokens;
-    //std::ifstream is(fileName);
+    tokens = readLines(is);
 
-    ////and we start adding a timer too
-    //tokens = readLines(is);
-
-    //if (printing) {
-    //    printTokens(cout, tokens);
-    //}
-  
+    if (printing) {
+        printTokens(cout, tokens);
+    }
 }
