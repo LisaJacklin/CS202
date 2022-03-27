@@ -59,10 +59,10 @@ int main(int argc, char** argv) {
 
     vector<Token> tokens;
     ifstream is(fileName);
+    istream& s = is;
 
-    tokens = readLines(is);
+    //tokens = paragraphs(s);
 
-    if (printing) {
-        printTokens(cout, tokens);
-    }
+    //Token::printTokens(cout , tokens);
+    
 }

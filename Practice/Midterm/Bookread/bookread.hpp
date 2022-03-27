@@ -16,99 +16,61 @@ using std::vector;
 using std::istringstream;
 using std::getline;
 
-struct Token {
-    string token;
-    int line;
-    int column;
+class Token {
+private:
+    vector<string> token;
+    vector<int> line;
+    vector<int> column;
+public:
+
+    vector <string > paragraphs(istream& is) {
+        vector<string> toread;
+        int lineNum = 0;
+        string paragraph;
+
+        while (true) {
+
+            getline(is, paragraph);
+            if (getline(is, paragraph)) {
+                // line contains one line from the input stream
+                toread.push_back(paragraph);
+            }
+            else {
+                // inputStream is empty, EOF or in error state
+                break;
+            }
+
+            //test case
+            if (!is) {
+                if (is.eof()) {
+                    //good, we're done
+                    break;
+                }
+                //bad error
+                return toread;
+            }
+
+        }
+        return toread;
+    }
+
+    void printTokens(ostream& os, const vector<Token> & token) {
+        vector<Token> tokens;
+        for (Token t : tokens) {
+
+            os << t.tokens << " ";
+            //attempting to use this to separate values into about 50 character sections...
+
+            if (t.tokens.size() >= 50) {
+                os << "\n";
+            }
+
+            /* if (t.token.empty()) {
+                 os << "\n\n";
+             }*/
+        }
+    }
 };
 
-//vector<string> lineToTokens(const string& line);
-vector<Token> readLines(istream& is);
-void printTokens(ostream& os, const vector<Token>& tokens);
-
-vector <string> paragraphs(const string& text);
-
-vector<Token> readLines(istream& is) {
-    vector<Token> toread;
-    int lineNum = 0;
-    string line;
-
-    while (true) {
-
-        getline(is, line);
-        if (!is) {
-            if (is.eof()) {
-                //good, we're done
-                break;
-            }
-            //bad error
-            return toread;
-        }
-
-        //process
-        lineNum++;
-        vector<string> tokens = paragraphs(line);
-        for (string s : tokens) {
-            Token t;
-            t.token = s;
-            toread.push_back(t);
-        }
-    }
-    return toread;
-
-}
-
-#if 0
-vector<string> lineToTokens(const string& line) {
-    vector<string> toRet;
-
-    istringstream is(line);
-    string token;
-
-    while (true) {
-        is >> token;
-        if (!is) {
-            if (is.eof()) {
-                break;
-            }
-            //Broken, but not much we can do
-            return toRet;
-        }
-
-        toRet.push_back(token);
-    }
-
-    return toRet;
-}
-#endif
-void printTokens(ostream& os, const vector<Token>& tokens) {
-    for (Token t : tokens) {
-        
-        os << t.token << " ";
-        //attempting to use this to separate values into about 50 character sections...
-       
-    }
-}
-
-vector <string > paragraphs(const string& text) {
-    vector<string> toread;
-
-    istringstream is(text);
-    string token;
-
-    while (true) {
-        is >> token;
-        if (!is) {
-            if (is.eof()) {
-                break;
-            }
-            return toread;
-        }
-
-        toread.push_back(token);
-    }
-
-    return toread;
-}
 
 #endif
