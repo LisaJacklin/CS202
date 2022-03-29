@@ -2,20 +2,26 @@
 #define BOOKREAD_HPP
 
 #include <iostream>
-#include <ostream>
-#include <istream>
+#include <iomanip>
+
 #include <string>
 #include <vector>
 #include <sstream>
+#include <ostream>
+#include <istream>
+
+#include <algorithm>
 
 using std::ostream;
 using std::istream;
 using std::string;
 using std::find;
-using std::vector;
 using std::istringstream;
 using std::ostringstream;
 using std::getline;
+
+using std::vector;
+
 
 struct Token {
     string token;
@@ -79,19 +85,8 @@ void printTokens(ostream& os, vector<Token>& tokens) {
     // vector<Token> tokens;
     for (Token t : tokens) {
         //okay now, a wrapping function to make the words fit the correct requirements.
-        int characters = 50;
-        if (t.token.length() < characters) {
-            os << t.token << " ";
-            size_t space_left = characters - t.token.length();
-            if (space_left < t.token.length() + 1) {
-                os << " " << t.token;
-                space_left -= t.token.length() + 1;
-            }
-        }
-        else {
-            os << "\n" << t.token;
-            int characters = 50;
-        }            
+        std::for_each(tokens.begin(), tokens.end(),
+            [](int v) { std::cout << std::setw(50) << v << ' '; });
     }
 }
 #endif

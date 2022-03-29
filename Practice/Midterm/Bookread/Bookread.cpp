@@ -22,6 +22,8 @@ HW3AP1 Notes:
 std::vector <std::string> paragraphs;
 - have a vector with two strings; ( tokenizer rids extra space)
 
+Idea!!!! setw()?
+
 */
 
 #include <iostream>
