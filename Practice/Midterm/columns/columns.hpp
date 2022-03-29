@@ -87,10 +87,15 @@ public:
                     space_left = space_left - token[i].size();
                 }
             } 
-            if (token[i].size() = 38) {
+            if (token[i].size() == 38) {
                 os << "    " << token[i]; //space of 4
             }
-            if (token[i].size() > 38 && token[i].size() < 80){
+            if (token[i].size() > 38 && token[i].size() < 80) {
+                os << token[i + 4] << " ";
+            }
+            if (token[i + 4].size() == 80) {
+                os << "\n\n" << " ";
+            }
 
 
 
