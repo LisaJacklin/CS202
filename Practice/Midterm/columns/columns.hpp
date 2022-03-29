@@ -78,8 +78,23 @@ public:
     }
 
     void printTokens(ostream& os, vector<Token>& tokens) {
+        int space_left = 38;
 
         for (int i = 0; i < token.size(); i++) {
+            if (token[i].size() < 38) {
+                if (space_left > token[i].size() + 1) {
+                    os << token[i] << " ";
+                    space_left = space_left - token[i].size();
+                }
+            } 
+            if (token[i].size() = 38) {
+                os << "    " << token[i]; //space of 4
+            }
+            if (token[i].size() > 38 && token[i].size() < 80){
+
+
+
+#if 0 //code from book.hpp used as reference
             // os << token[i] << " ";
               //okay now, a wrapping function to make the words fit the correct requirements....
             int space_left = 50;
@@ -95,6 +110,7 @@ public:
                     space_left = 50;
                 }
             }
+#endif
         }
     }
 };
