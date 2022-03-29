@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bookread.hpp">
+    <ClInclude Include="book.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

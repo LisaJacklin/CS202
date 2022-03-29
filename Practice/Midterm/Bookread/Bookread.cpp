@@ -22,18 +22,16 @@ HW3AP1 Notes:
 std::vector <std::string> paragraphs;
 - have a vector with two strings; ( tokenizer rids extra space)
 
-Idea!!!! setw()?
 
 */
 
 #include <iostream>
-#include "bookread.hpp"
+#include "book.hpp"
 #include <fstream>
 
 using std::ifstream;
 using std::cout;
 using std::endl;
-
 
 int main(int argc, char** argv) {
     //remember this has to be true to read!
@@ -52,7 +50,6 @@ int main(int argc, char** argv) {
             fileName = argv[i];
             fileMode = true;
         }
-
     }
     //error tester
     if (!fileMode) {
@@ -63,10 +60,10 @@ int main(int argc, char** argv) {
     vector<Token> tokens;
     ifstream is(fileName);
   
-    tokens = readLines(is);
+    Token::readLines(tokens, is);
 
     if (printing) {
-       printTokens(cout, tokens);
+      Token::printTokens(cout, tokens);
         
     };
 

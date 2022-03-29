@@ -2,26 +2,20 @@
 #define BOOKREAD_HPP
 
 #include <iostream>
-#include <iomanip>
-
+#include <ostream>
+#include <istream>
 #include <string>
 #include <vector>
 #include <sstream>
-#include <ostream>
-#include <istream>
-
-#include <algorithm>
 
 using std::ostream;
 using std::istream;
 using std::string;
 using std::find;
+using std::vector;
 using std::istringstream;
 using std::ostringstream;
 using std::getline;
-
-using std::vector;
-
 
 struct Token {
     string token;
@@ -84,9 +78,21 @@ vector<string> lineToTokens(const string& line) {
 void printTokens(ostream& os, vector<Token>& tokens) {
     // vector<Token> tokens;
     for (Token t : tokens) {
+       // os << t.token.length() << " "; //testing to make sure numbers are given
+       // 
         //okay now, a wrapping function to make the words fit the correct requirements.
-        std::for_each(tokens.begin(), tokens.end(),
-            [](int v) { std::cout << std::setw(50) << v << ' '; });
-    }
+        int space_left = 50;
+        if (t.token.length() < 50) {
+           // os << t.token << " ";
+            if (space_left > t.token.length() + 1) {
+                os  << t.token << " ";
+                space_left -= t.token.length();
+            }
+            if(space_left <= t.token.length()) {
+                os << "\n" << t.token;
+                space_left = 50;
+            }
+        }         
+   } //this section won't work like i want it too because it's tokenizing in terms of individual strings rather than as a sentence or paragraph....
 }
 #endif
