@@ -91,10 +91,10 @@ public:
                 os << "    " << token[i]; //space of 4
             }
             if (token[i].size() > 38 && token[i].size() < 80) {
-                os << token[i + 4] << " ";
+                os << token[i + 4] << " "; //print the 4th paragraph in the second column top
             }
             if (token[i + 4].size() == 80) {
-                os << "\n\n" << " ";
+                os << "\n\n" << " "; //new lines first column to second column again
             }
 
 
