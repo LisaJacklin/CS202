@@ -4,7 +4,6 @@
 // 3/24/ 2022
 //
 
-
 #include <iostream>
 #include "columns.hpp"
 #include <fstream>
@@ -16,6 +15,17 @@ using std::ifstream;
 using std::cout;
 using std::endl;
 
+/*
+Requirements:
+-turn the program from bookread.cpp/hpp into the 
+  then add two columns 38 char 4 space 38 char
+
+  ideas:
+  setw(4) for the space between the columns?
+  - figure out one page length in column 1
+  that way i know how many paragraphs I need to place
+  in the other column....
+*/
 
 int main(int argc, char** argv) {
     //remember this has to be true to read!

@@ -57,13 +57,13 @@ public:
     }
 
     void paragraphsToTokens(vector<string>& toRet, const string& line) {
-        //vector<string> toRet;
+        //vector<string> toRet; this is now included in the void
         istringstream is(line);
         string token;
 
         while (true) {
             is >> token;
-            if (!is) {
+            if (!is) { //eof checker
                 if (is.eof()) {
                     break;
                 }
