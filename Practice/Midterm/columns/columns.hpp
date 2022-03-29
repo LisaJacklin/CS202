@@ -1,5 +1,5 @@
-#ifndef BOOKREAD_HPP
-#define BOOKREAD_HPP
+#ifndef BOOK_HPP
+#define BOOK_HPP
 
 #include <iostream>
 #include <ostream>
@@ -17,81 +17,87 @@ using std::istringstream;
 using std::ostringstream;
 using std::getline;
 
-struct Token {
-    string token;
-    int paragraphs;
+class Token {
+private:
+    vector<string> token;
+    vector<int> paragraphs;
+
+public:
+    void readLines(vector<Token>& toRet, istream& is) {
+        // vector<Token> toRet;
+        vector<int> paragraph;
+
+        //int paragraph = 0;
+        string token;
+
+        while (true) {
+            getline(is, token);
+            if (!is) {
+                if (is.eof()) {
+                    //file is complete
+                    break;
+                }
+                //error....
+                //return toRet;
+            }
+            //trying this, to see if they can 
+            while (token.length() == 0) {
+                //process
+          // paragraph++;
+                vector<string> tokens;
+                paragraphsToTokens(tokens, token);
+                for (string s : tokens) {
+                    Token t;
+                    toRet.push_back(t);
+                }
+            }
+        }
+        //return toRet;
+
+    }
+
+    void paragraphsToTokens(vector<string>& toRet, const string& line) {
+        //vector<string> toRet;
+        istringstream is(line);
+        string token;
+
+        while (true) {
+            is >> token;
+            if (!is) {
+                if (is.eof()) {
+                    break;
+                }
+                //Broken, but not much we can do
+                //return toRet;
+            }
+            while (token.length() == 0) {
+                toRet.push_back(token); //added so it should wait till full paragraph...
+            }
+        }
+        // return toRet;
+    }
+
+    void printTokens(ostream& os, vector<Token>& tokens) {
+
+        for (int i = 0; i < token.size(); i++) {
+            // os << token[i] << " ";
+              //okay now, a wrapping function to make the words fit the correct requirements....
+            int space_left = 50;
+            // os << t.token.length() << " "; //testing to make sure numbers are given
+            if (token[i].size() < 50) {
+                // os << t.token << " ";
+                if (space_left > token[i].size() + 1) {
+                    os << token[i] << " ";
+                    space_left -= token[i].size();
+                }
+                if (space_left <= token[i].size()) {
+                    os << "\n\n";
+                    space_left = 50;
+                }
+            }
+        }
+    }
 };
 
-vector<string> lineToTokens(const string& line);
-vector<Token> readLines(istream& is);
-void printTokens(ostringstream& os, vector<Token>& tokens);
 
-vector<Token> readLines(istream& is) {
-    vector<Token> toRet;
-    int Num = 0;
-    string line;
-
-    while (true) {
-        getline(is, line);
-        if (!is) {
-            if (is.eof()) {
-                //file is complete
-                break;
-            }
-            //error....
-            return toRet;
-        }
-        //process
-        Num++;
-        vector<string> tokens = lineToTokens(line);
-        for (string s : tokens) {
-            Token t;
-            t.token = s;
-            t.paragraphs = Num;
-            toRet.push_back(t);
-        }
-    }
-    return toRet;
-
-}
-
-vector<string> lineToTokens(const string& line) {
-    vector<string> toRet;
-    istringstream is(line);
-    string token;
-
-    while (true) {
-        is >> token;
-        if (!is) {
-            if (is.eof()) {
-                break;
-            }
-            //Broken, but not much we can do
-            return toRet;
-        }
-        toRet.push_back(token);
-    }
-    return toRet;
-}
-
-
-void printTokens(ostream& os, vector<Token>& tokens) {
-    // vector<Token> tokens;
-    for (Token t : tokens) {
-        //okay now, a wrapping function to make the words fit the correct requirements.
-        int characters = 50;
-        if (t.token.length() < characters) {
-            os << t.token << " ";
-            size_t space_left = characters - t.token.length();
-            if (space_left < t.token.length() + 1) {
-                os << " " << t.token;
-                space_left -= t.token.length() + 1;
-            }
-        }
-        else {
-            os << "\n" << t.token;
-            int characters = 50;
-        }
-    }
-}
 #endif

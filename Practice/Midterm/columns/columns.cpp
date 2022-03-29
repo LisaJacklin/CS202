@@ -6,7 +6,7 @@
 
 
 #include <iostream>
-#include "bookread.hpp"
+#include "columns.hpp"
 #include <fstream>
 #include <iostream>
 using std::cout;
@@ -45,10 +45,10 @@ int main(int argc, char** argv) {
     vector<Token> tokens;
     ifstream is(fileName);
 
-    tokens = readLines(is);
+     Token::readLines(tokens, is);
 
     if (printing) {
-        printTokens(cout, tokens);
+        Token::printTokens(cout, tokens);
 
     };
 
