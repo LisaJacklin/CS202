@@ -8,6 +8,20 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+/*
+Requirements:
+1. functionc contains exactly one statement
+2. functionb declares an object of class ( construct and destruct not)
+3. output!
+- starting main
+- object constructed message
+- starting function b
+- object destruction message
+- cought an exception: function c threw
+- ended normally
+
+*/
+
 void functionC(){
     //your code here
 }
