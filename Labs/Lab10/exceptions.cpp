@@ -1,3 +1,8 @@
+//exceptions.cpp
+//Lisa Jacklin
+//CS 202 Lab 10
+//3/30/2022
+
 #include <iostream>
 using std::cin;
 using std::cout;
