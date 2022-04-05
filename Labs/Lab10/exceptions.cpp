@@ -22,11 +22,12 @@ Requirements:
 
 */
 
-class labs {
-    labs() {
+class foo {
+public:
+    foo() {
         cout << "labs constructor" << endl;
     }
-    ~labs() {
+    ~foo() {
         cout << "labs deconstructor" << endl;
     }
 };
@@ -37,7 +38,7 @@ void functionC(){
 }
 
 void functionB(){
-    labs L; // not taking my class parameter...
+    foo l; // not taking my class parameter... changed the class name and now works
     cout << "Starting functionB()" << endl;
     functionC();
     cout << "Ending functionB()" << endl;
@@ -51,7 +52,7 @@ void functionA(){
     catch (const std::exception &e) {
         cout << "Caught an exception: " << e.what() << endl;
     //since this line is to tell if it's caught, I placed it
-        //within my catch with e being the exception.
+    //within my catch with e being the exception.
     }
 }
 int main() {
