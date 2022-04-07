@@ -8,6 +8,19 @@
 using std::cout;
 using std::endl;
 
+class Base {
+public:
+	Base() {
+		cout << "Constructing a default Base object" << endl;
+	}
+	Base(int _var) {
+		_var = 1;
+		cout << "variable number" << _var << endl;
+	}
+private:
+	int _var;
+};
+
 int main() {
 	cout << "start of main" << endl;
 
