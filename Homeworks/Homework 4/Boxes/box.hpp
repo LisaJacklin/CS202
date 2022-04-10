@@ -24,6 +24,7 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::ostream;
+using std::unique_ptr;
 
 //Abstract Base class
 class Box {
@@ -51,20 +52,66 @@ private:
 	int _height;
 };
 
+//operator funtion that draws to box to ostream
+ostream & operator << (ostream & os, const Box & b) {
+	b.print(os); //PRINT STILL NEEDS TO BE DEFINED!!!
+	return os;
+}
+
 class FilledBox : public Box {
 public:
-private:
+	//default constructor of 1x1 box
+	FilledBox() {
 
+	}
+	//user specified width and height
+	FilledBox(int h, int w) :Box (w, h) {
+
+	}
+	//now type that returns string as appropriate
+	string type() {
+		
+	}
+
+//since all derived classes are the same box shape, 
+// no additional private integers needed.
 };
+
+//factory function
+unique_ptr<Box> boxFactor(char c, int w, int h) {
+	//needs to take a character f, h, or c... and a width and height...
+}
 
 class HollowBox : public Box {
 public:
-private:
+	//default constructor of 1x1 box
+	HollowBox() {
+
+	}
+	//user specified width and height
+	HollowBox(int h, int w) :Box(w, h) {
+
+	}
+	//now type that returns string as appropriate
+	string type() {
+
+	}
 };
 
 class CheckeredBox : public Box {
 public:
-private:
+	//default constructor of 1x1 box
+	CheckeredBox() {
+
+	}
+	//user specified width and height
+	CheckeredBox(int h, int w) :Box(w, h) {
+
+	}
+	//now type that returns string as appropriate
+	string type() {
+
+	}
 };
 
 #endif
