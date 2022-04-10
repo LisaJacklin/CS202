@@ -84,11 +84,6 @@ public:
 // no additional private integers needed.
 };
 
-//factory function
-unique_ptr<Box> boxFactor(char c, int w, int h) {
-	//needs to take a character f, h, or c... and a width and height...
-}
-
 class HollowBox : public Box {
 public:
 	//default constructor of 1x1 box
@@ -100,7 +95,15 @@ public:
 		return "Hollow";
 	}
 	void print(ostream& os) const {
-		
+		for (int i = 0; i < getWidth(); i++) os << "x";
+		os << endl;
+		//these last two for loops account for the outside border with -2
+		//and a space after a single marker for the outside.
+		for (int i = 0; i < getHeight() - 2; i++) {
+			os << "x";
+			for (int i = 0; i < getWidth() - 2; i++) os < " ";
+			os << "x\n";
+		}
 	}
 };
 
@@ -118,5 +121,11 @@ public:
 
 	}
 };
+
+//factory function
+unique_ptr<Box> boxFactor(char c, int w, int h) {
+	//needs to take a character f, h, or c... and a width and height...
+}
+
 
 #endif
