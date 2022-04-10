@@ -22,13 +22,30 @@
 #include <iostream>
 using std::cout;
 using std::endl;
+using std::string;
+using std::ostream;
 
 //Abstract Base class
 class Box {
-
-	Box() {
-		cout << "box base constructor" << endl;
+	//constructor that sets width and height...
+	Box(int w, int h) : _width(w) , _height(h) {	
 	}
+	~Box (){} //box deconstructor...
+	//does this constructor need to be virtual? 
+
+	//accessor functions
+	int getWidth() const { return _width;}
+	int getHeight() const { return _height; }
+
+	//mutator functions
+	void setWidth(int w) { _width = w;}
+	void setHeight(int h) {	_height = h;}
+
+	//now virtual functions
+	virtual void print(ostream& os) const = 0;
+	virtual string type() const = 0;
+	//these functions are going to be defined within out derived classes
+
 private:
 	int _width;
 	int _height;
