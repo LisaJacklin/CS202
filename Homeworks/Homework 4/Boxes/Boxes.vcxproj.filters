@@ -18,8 +18,10 @@
     <ClCompile Include="boxtest3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="box.cpp">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="box.hpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>
