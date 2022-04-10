@@ -53,12 +53,6 @@ private:
 	int _height;
 };
 
-//operator funtion that draws to box to ostream
-ostream & operator << (ostream & os, const Box & b) {
-	b.print(os); //PRINT STILL NEEDS TO BE DEFINED!!!
-	return os;
-}
-
 class FilledBox : public Box {
 public:
 	//default constructor of 1x1 box
@@ -128,6 +122,12 @@ public:
 		}
 	}
 };
+
+//operator funtion that draws to box to ostream
+ostream& operator << (ostream& os, const Box& b) {
+	b.print(os); //PRINT STILL NEEDS TO BE DEFINED!!!
+	return os;
+}
 
 //factory function
 unique_ptr<Box> boxFactor(char c, int w, int h) {
