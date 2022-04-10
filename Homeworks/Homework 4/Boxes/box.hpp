@@ -16,123 +16,124 @@
 * Abstract base called Box,
 * Derived: filledBox, HollowBox, and CheckeredBox
 *
-*
 */
 
 #include <iostream>
-using std::cout;
-using std::endl;
-using std::string;
-using std::ostream;
-using std::unique_ptr;
+#include <string>
 
-//Abstract Base class
+using std::ostream;
+using std::string;
+using std::make_unique;
+
+//abstract base class Box
 class Box {
 public:
-	//constructor that sets width and height...
-	Box(int w, int h) : _width(w) , _height(h) {	
-	}
-	~Box (){} //box deconstructor...
-	//does this constructor need to be virtual? 
+    Box(int w, int h) : width(w), height(h) { }
 
-	//accessor functions
-	int getWidth() const { return _width;}
-	int getHeight() const { return _height; }
+     ~Box() { }
+     //does this need to be virtual?
 
-	//mutator functions
-	void setWidth(int w) { _width = w;}
-	void setHeight(int h) {	_height = h;}
+     //accessor functions
+    int getWidth() const { return width; }
+    int getHeight() const { return height; }
 
-	//now virtual functions
-	virtual void print(ostream& os) const = 0;
-	virtual string type() const = 0;
-	//these functions are going to be defined within out derived classes
+    //mutator functions
+    void setWidth(int w) { width = w; }
+    void setHeight(int h) { height = h;}
+
+    //now virtual functions... these need to be defined by 
+    //by each derived class
+    virtual void print(ostream& os) const = 0;
+    virtual string type() const = 0;
 
 private:
-	int _width;
-	int _height;
+    int width;
+    int height;
 };
 
+//derived classes
 class FilledBox : public Box {
 public:
-	//default constructor of 1x1 box
-	FilledBox(): Box (1,1) {}
-	//user specified width and height
-	FilledBox(int h, int w) :Box (w, h) {}
-	//now type that returns string as appropriate
-	string type() const{
-		return "Filled";
-	}
+    FilledBox(int w, int h) : Box(w, h) { }
+    FilledBox() : Box(1, 1) { }
 
-	//and dont forget the print function!!!!
-	void print(ostream& os) const {
-		for (int i = 0; i < getHeight(); i++) {
-			for (int j = 0; j < getWidth(); j++) {
-				os << "x";
-			}
-			os << endl;
-		}
-	}
+    void print(ostream& os) const {
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                os << "x"; // prints x for all values of the box
+            }
+            os << "\n";
+        }
+    }
 
-//since all derived classes are the same box shape, 
-// no additional private integers needed.
+    string type() const { return "Filled"; }
 };
-
 class HollowBox : public Box {
 public:
-	//default constructor of 1x1 box
-	HollowBox() : Box(1, 1) {}
-	//user specified width and height
-	HollowBox(int h, int w) :Box(w, h) {}
-	//now type that returns string as appropriate
-	string type() {
-		return "Hollow";
-	}
-	void print(ostream& os) const {
-		for (int i = 0; i < getWidth(); i++) os << "x";
-		os << endl;
-		//these last two for loops account for the outside border with -2
-		//and a space after a single marker for the outside.
-		for (int i = 0; i < getHeight() - 2; i++) {
-			os << "x";
-			for (int i = 0; i < getWidth() - 2; i++) os < " ";
-			os << "x\n";
-		}
-	}
-};
+    HollowBox(int w, int h) : Box(w, h) { }
+    HollowBox() : Box(1, 1) {}
 
+    void print(ostream& os) const {
+        for (int i = 0; i < getWidth(); i++) os << "x";
+        os << "\n";
+        //the 2 accounts for the outline of the box
+        // and allows an x to be placed just before the space and 
+        //at the very beginning of the set.
+        for (int i = 0; i < getHeight() - 2; i++) {
+            os << "x";
+            for (int i = 0; i < getWidth() - 2; i++) os << " ";
+            os << "x\n";
+        }
+        
+        if (getHeight() > 1) {
+            for (int i = 0; i < getWidth(); i++) os << "x";
+            os << "\n";
+        }
+    }
+
+    string type() const { return "Hollow"; }
+};
 class CheckeredBox : public Box {
 public:
-	//default constructor of 1x1 box
-	CheckeredBox() : Box(1, 1) {}
-	//user specified width and height
-	CheckeredBox(int h, int w) :Box(w, h) {}
-	//now type that returns string as appropriate
-	string type() {
-		return "Checkered";
-	}
-	void print(ostream& os) const {
-		for (int i = 0; i < getHeight(); i++) {
-			for (int j = 0; j < getWidth(); j++) {
-				if (j % 2 == i % 2) os << "x"; //prints for every other which changes 
-				//for each line between an x and a space
-				else os << " ";
-			}
-			os << endl;
-		}
-	}
+    CheckeredBox(int w, int h) : Box(w, h) {}
+    CheckeredBox() : Box(1, 1) { }
+
+    void print(ostream& os) const {
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                if (j % 2 == i % 2) os << "x";
+                //every other prints an x and then a space
+                //this alternates between each row.
+                else os << " ";
+            }
+            os << "\n";
+        }
+    }
+
+    string type() const {return "Checkered";}
 };
 
-//operator funtion that draws to box to ostream
-ostream& operator << (ostream& os, const Box& b) {
-	b.print(os); //PRINT STILL NEEDS TO BE DEFINED!!!
-	return os;
+//ostream overloading operator
+//print function now complete
+ostream& operator<<(ostream& os, const Box& b) {
+    b.print(os);
+    return os;
 }
 
-//factory function
-unique_ptr<Box> boxFactor(char c, int w, int h) {
-	//needs to take a character f, h, or c... and a width and height...
-}
+//now box factor pointer...
+std::unique_ptr<Box> boxFactory(char c, int w, int h) {
+    if (c == 'f') { //f is for filled
+        return make_unique<FilledBox>(FilledBox(w, h));
+    }
 
+    if (c == 'h') { //h is for hollow
+        return make_unique<HollowBox>(HollowBox(w, h));
+    }
+
+    if (c == 'c') {// and c is for checkered
+        return make_unique<CheckeredBox>(CheckeredBox(w, h));
+    }
+    return nullptr;
+}
 
 #endif
