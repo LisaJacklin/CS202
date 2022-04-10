@@ -30,8 +30,8 @@ class Box {
 public:
     Box(int w, int h) : width(w), height(h) { }
 
-     ~Box() { }
-     //does this need to be virtual?
+     virtual ~Box() { }
+     //does this need to be virtual? yes for the tests
 
      //accessor functions
     int getWidth() const { return width; }
