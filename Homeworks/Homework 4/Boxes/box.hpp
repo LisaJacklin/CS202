@@ -61,16 +61,17 @@ ostream & operator << (ostream & os, const Box & b) {
 class FilledBox : public Box {
 public:
 	//default constructor of 1x1 box
-	FilledBox() {
-
-	}
+	FilledBox(): Box (1,1) {}
 	//user specified width and height
-	FilledBox(int h, int w) :Box (w, h) {
-
-	}
+	FilledBox(int h, int w) :Box (w, h) {}
 	//now type that returns string as appropriate
-	string type() {
-		
+	string type() const{
+		return "Filled";
+	}
+
+	//and dont forget the print function!!!!
+	void print(ostream& os) const {
+
 	}
 
 //since all derived classes are the same box shape, 
@@ -85,7 +86,7 @@ unique_ptr<Box> boxFactor(char c, int w, int h) {
 class HollowBox : public Box {
 public:
 	//default constructor of 1x1 box
-	HollowBox() {
+	HollowBox() : Box(1, 1) {
 
 	}
 	//user specified width and height
@@ -94,14 +95,14 @@ public:
 	}
 	//now type that returns string as appropriate
 	string type() {
-
+		return "Hollow";
 	}
 };
 
 class CheckeredBox : public Box {
 public:
 	//default constructor of 1x1 box
-	CheckeredBox() {
+	CheckeredBox() : Box(1, 1) {
 
 	}
 	//user specified width and height
@@ -110,7 +111,7 @@ public:
 	}
 	//now type that returns string as appropriate
 	string type() {
-
+		return "Checkered";
 	}
 };
 
