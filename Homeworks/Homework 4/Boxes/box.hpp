@@ -86,32 +86,31 @@ unique_ptr<Box> boxFactor(char c, int w, int h) {
 class HollowBox : public Box {
 public:
 	//default constructor of 1x1 box
-	HollowBox() : Box(1, 1) {
-
-	}
+	HollowBox() : Box(1, 1) {}
 	//user specified width and height
-	HollowBox(int h, int w) :Box(w, h) {
-
-	}
+	HollowBox(int h, int w) :Box(w, h) {}
 	//now type that returns string as appropriate
 	string type() {
 		return "Hollow";
+	}
+
+	void print(ostream& os) const {
+
 	}
 };
 
 class CheckeredBox : public Box {
 public:
 	//default constructor of 1x1 box
-	CheckeredBox() : Box(1, 1) {
-
-	}
+	CheckeredBox() : Box(1, 1) {}
 	//user specified width and height
-	CheckeredBox(int h, int w) :Box(w, h) {
-
-	}
+	CheckeredBox(int h, int w) :Box(w, h) {}
 	//now type that returns string as appropriate
 	string type() {
 		return "Checkered";
+	}
+	void print(ostream& os) const {
+
 	}
 };
 
