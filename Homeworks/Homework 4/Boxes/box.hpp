@@ -28,6 +28,7 @@ using std::unique_ptr;
 
 //Abstract Base class
 class Box {
+public:
 	//constructor that sets width and height...
 	Box(int w, int h) : _width(w) , _height(h) {	
 	}
@@ -71,7 +72,12 @@ public:
 
 	//and dont forget the print function!!!!
 	void print(ostream& os) const {
-
+		for (int i = 0; i < getHeight(); i++) {
+			for (int j = 0; j < getWidth(); j++) {
+				os << "x";
+			}
+			os << endl;
+		}
 	}
 
 //since all derived classes are the same box shape, 
@@ -93,9 +99,8 @@ public:
 	string type() {
 		return "Hollow";
 	}
-
 	void print(ostream& os) const {
-
+		
 	}
 };
 
