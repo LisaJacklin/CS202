@@ -118,7 +118,14 @@ public:
 		return "Checkered";
 	}
 	void print(ostream& os) const {
-
+		for (int i = 0; i < getHeight(); i++) {
+			for (int j = 0; j < getWidth(); j++) {
+				if (j % 2 == i % 2) os << "x"; //prints for every other which changes 
+				//for each line between an x and a space
+				else os << " ";
+			}
+			os << endl;
+		}
 	}
 };
 
