@@ -7,6 +7,7 @@
 
 #include <iostream>
 using std::cout;
+using std::endl;
 
 class Base {
 public:
@@ -45,14 +46,33 @@ int main() {
 
 	//Call both functions from pointers 2-6
 	//2
-	
+	cout << "Base clas pointer to the Derived Class object\n";
+	bPd->fooVirtual();
+	bPd->fooNotVirtual();
+	cout << endl;
+
 	//3
+	cout << "Derived Class pointer to the Derived Class object \n";
+	dPd->fooVirtual();
+	dPd->fooNotVirtual();
+	cout << endl;
 	
 	//4
+	cout << "Base class reference to a Base class object\n";
+	bRb.fooVirtual();
+	bRb.fooNotVirtual();
+	cout << endl;
 	
 	//5
-	
+	cout << "Base class reference to derived class object\n";
+	bRd.fooVirtual();
+	bRd.fooNotVirtual();
+	cout << endl;
 	//6
+	cout << "Derived Class reference to derived class object\n";
+	dRd.fooVirtual();
+	dRd.fooNotVirtual();
+	cout << endl;
 
 	return 0;
 }
