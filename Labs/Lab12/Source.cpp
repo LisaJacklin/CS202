@@ -26,14 +26,16 @@ int main() {
 
 	//  1) A base class pointer to the base class object.
 	Base* bPb = &b;
-
 	//  2) A base class pointer to the derived class object.
 	Base* bPd = &d;
-
 	//  3) A derived class pointer to the derived class object.
+	Derived* dPd = &d; 
 	//  4) A base class reference to the base class object.
+	Base& bRb = b;
 	//  5) A base class reference to the derived class object.
+	Base& bRd = d;
 	//  6) A derived class reference to the derived class object.
+	Derived& dRd = d;
 
 	cout << "Calling non-virtual function from Base class pointer to base: ";
 	bPb->fooNotVirtual();
@@ -42,6 +44,15 @@ int main() {
 	bPb->fooVirtual();
 
 	//Call both functions from pointers 2-6
+	//2
+	
+	//3
+	
+	//4
+	
+	//5
+	
+	//6
 
 	return 0;
 }
