@@ -31,7 +31,7 @@ cout << twice(string("hello")) << endl;
 
 //template and function named twice
 template <typename Type>
-void twice(Type x) {
+Type twice(Type x) {
 	return x + x; //this should return the type as x+x
 }
 
@@ -41,7 +41,7 @@ int main() {
 
 	cout << twice(2) << endl;
 	cout << twice(2.3) << endl;
-	cout << twice(string("hello")) << endl;
+	cout << twice(string(" hello ")) << endl;
 	cout << twice("world") << endl;
 
 	cout << "end of main" << endl;
