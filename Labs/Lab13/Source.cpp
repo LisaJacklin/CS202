@@ -8,6 +8,8 @@
 using std::cout;
 using std::endl;
 
+using std::string;
+
 /*
 Requirements:
 1. write a function template named twice
@@ -18,7 +20,7 @@ cout << twice(2) << endl;
 cout << twice(2.3) << endl;
 cout << twice(string("hello")) << endl;
 
-2.last line calls twice w a string.
+2.last line calls twice w/ a string.
 - what happens if it's called using a c-style string?
 3. Fix code so twice ("world") works
 -HINT: template specialization define a version of twice that takes
@@ -27,9 +29,20 @@ cout << twice(string("hello")) << endl;
   
   */
 
+//template and function named twice
+template <typename Type>
+void twice(Type x) {
+	return x + x; //this should return the type as x+x
+}
+
 
 int main() {
 	cout << "start of main" << endl;
+
+	cout << twice(2) << endl;
+	cout << twice(2.3) << endl;
+	cout << twice(string("hello")) << endl;
+	cout << twice("world") << endl;
 
 	cout << "end of main" << endl;
 }
