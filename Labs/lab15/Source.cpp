@@ -8,6 +8,9 @@
 using std::cout;
 using std::endl;
 
+#include "Wrapper.hpp"
+using std::string;
+
 /*
 Requirements:
 - write a class template "wrapper" containing an object of any type
@@ -29,7 +32,7 @@ int main() {
 	cout << "start of main" << endl;
 
 	Wrapper<int> w{ 2 };
-	Wrapper <string> s{ "Hellow world!" };
+	Wrapper <string> s{ "Hello world!" };
 	cout << w << " " << s << endl;
 
 	cout << "end of main" << endl;
