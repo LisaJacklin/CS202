@@ -42,7 +42,7 @@ int main() {
 	cout << twice(2) << endl;
 	cout << twice(2.3) << endl;
 	cout << twice(string(" hello ")) << endl;
-	cout << twice("world") << endl;
+	//cout << twice("world") << endl;
 
 	cout << "end of main" << endl;
 }
