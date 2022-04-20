@@ -9,6 +9,9 @@
 using std::cout;
 using std::endl;
 
+#include <ostream>
+#include <istream>
+#include "myreadwrite.hpp"
 using std::ofstream;
 using std::ifstream;
 
