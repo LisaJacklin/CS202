@@ -50,7 +50,6 @@ template<typename T>
 Rational<T>::Rational(int num, int den) : _numerator(num), _denominator(den) {
    reduce();
 }
-
 template<typename T>
 std::ostream &operator<<(std::ostream &os, const Rational<T> &rhs) {
    os << rhs._numerator;
@@ -58,7 +57,6 @@ std::ostream &operator<<(std::ostream &os, const Rational<T> &rhs) {
       os << "/" << rhs._denominator;
    return os;
 }
-
 template<typename T>
 Rational<T> & Rational<T>::operator+=(const Rational<T> &rhs) {
    // a/b + c/d = (ad+bc)/ad
@@ -67,7 +65,6 @@ Rational<T> & Rational<T>::operator+=(const Rational<T> &rhs) {
    reduce();
    return *this;
 }
-
 template <typename T>
 Rational<T>& Rational<T>::operator-=(const Rational<T>& rhs) { //Canonical
     *this = *this - rhs; //uses Rational::operator- to define operator-=
@@ -96,7 +93,7 @@ Rational<T> Rational<T>::operator++(int) {//postfix ++
     auto copy{ *this };
     ++(*this);
     return copy;
-}
+} //HELP
 template <typename T>
 Rational<T>& Rational<T>::operator--() {//prefix --
     return *this -= 1;
@@ -106,7 +103,7 @@ Rational<T> Rational<T>::operator--(int) {//postfix --
     auto copy{ *this };
     --(*this);
     return copy;
-}
+} //HELP
 
 template<typename T>
 bool operator==(const Rational<T>& lhs, const Rational<T>& rhs) {

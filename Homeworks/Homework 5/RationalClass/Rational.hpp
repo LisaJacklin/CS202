@@ -48,6 +48,8 @@ public:
 
 };
 
+//note: Rational<T>& Rational<T>:: is used because we defined the operators with Rational<T> originally..
+
 template<typename T> 
 std::ostream& operator<<(std::ostream& os, const Rational<T>& rhs) {
 	return os;
@@ -57,34 +59,55 @@ Rational<T>::Rational(int num, int den) : _numerator(num), _denominator(den) {
 	reduce(); //only rational functions can call this! this reduces the fraction...
 };
 template<typename T>
-Rational<T>& operator-=(const Rational <T>& lhs, const Rational<T>& rhs) {
-	return lhs -= rhs;
+Rational<T>& Rational<T>::operator-= (const Rational<T>& rhs) {
+	*this = *this - rhs; //adjusted to match class and correctly do subtraction.
+	return &this;
 }
 template<typename T>
-Rational<T>& operator*=(const Rational<T>& lhs, const Rational<T>& rhs) {
-	return lhs *= rhs;
+Rational<T>& Rational<T>::operator*=( const Rational<T>& rhs) {
+	_numerator *= rhs._numerator;
+	_denominator *= rhs._denominator;
+	reduce();
+	return *this;
 }
-template<typename T>
-Rational<T>& operator/(Rational<T>& lhs, const Rational<T>& rhs) {
-	return lhs /= rhs; //this doesn't seem right
+//These are a few I missed! for rhs..
+template <typename T>
+Rational<T>& Rational<T>::operator+= (const Rational<T>& rhs) {
+	_numerator = _numerator * rhs._denominator + rhs._numerator * _denominator;
+	_denominator *= rhs._denominator;
+	reduce();
+	return *this;
 }
+template <typename T>
+Rational<T>& Rational<T>:: operator/= (const Rational<T>& rhs) {
+	*this *= {rhs._denominator, rhs._numerator}; //now *this is a fraction that an be reduced
+	reduce();
+	return *this;
+}
+
+
 template<typename T>
-Rational<T>& operator++() {//prefix ++
+Rational<T>& Rational<T>::operator++() {//prefix ++
 	return *this += 1;
 }
 template<typename T>
-Rational<T> operator++(int) {//postfix ++
-	return *this += 2;
+Rational<T>& Rational<T>:: operator++(int) {//postfix ++
+	//This function i'm having difficulty with...
+	//return *this += 2; did not work as planned
+	auto int a;
+	++a;
+	return a;
 }
 template<typename T>
-Rational<T>& operator--(const Rational<T>& lhs) {//prefix --
+Rational<T>& Rational<T>::operator--() {//prefix --
 	return *this -= 1;
 }
 template<typename T>
-Rational<T> operator--(int) {//postfix --
+Rational<T>& Rational<T>::operator--(int) {//postfix --
 	return *this -= 2;
 }
 
+//function template
 template<typename T>
 void Rational<T>::reduce() {
 	T gcd = std::gcd(_numerator, _denominator); //should create a function
@@ -97,14 +120,18 @@ void Rational<T>::reduce() {
 	}
 }
 
-
+//boolean operators
 template<typename U>
 bool operator==(const Rational<U>& lhs, const Rational<U>& rhs) {
-	return lhs == rhs; //need to check these...
+	//return lhs == rhs; //need to check these...
+	//adjusting this to make sure nums are equal and den are equal
+	return lhs._numerator == rhs._numerator && lhs._denominator == rhs._denominator;
  }
 template<typename U>
 bool operator<(const Rational<U>& lhs, const Rational<U>& rhs) {
-	return lhs < rhs;
+	//return lhs < rhs;
+	//this sets the value less than the other when cross multiplied
+	return lhs._numerator * rhs._denominator < rhs._numerator* lhs._denominator;
  }
 
 
