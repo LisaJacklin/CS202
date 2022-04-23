@@ -9,8 +9,8 @@
 //Note: this code is used for part 2!
 
 #include <iostream>
-using std::cout;
-using std::cin;
+
+#include <fstream>
 
 template <typename T>
 void myWrite(std::ofstream& w, const T& x) {

@@ -61,7 +61,7 @@ Rational<T>::Rational(int num, int den) : _numerator(num), _denominator(den) {
 template<typename T>
 Rational<T>& Rational<T>::operator-= (const Rational<T>& rhs) {
 	*this = *this - rhs; //adjusted to match class and correctly do subtraction.
-	return &this;
+	return *this;
 }
 template<typename T>
 Rational<T>& Rational<T>::operator*=( const Rational<T>& rhs) {
