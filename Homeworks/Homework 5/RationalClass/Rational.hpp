@@ -1,7 +1,7 @@
 #ifndef RATIONAL_HPP
 #define RATIONAL_HPP
 #include <iostream>
-
+#include <numeric>
 //Rational.hpp
 //CS 202 Sample Code
 //Modified by Lisa Jacklin
@@ -110,10 +110,10 @@ Rational<T> Rational<T>::operator--(int) {//postfix --
 //function template
 template<typename T>
 void Rational<T>::reduce() {
-	T gcd = gcd(_numerator, _denominator); //should create a function
-	//that takes the num and den and then gets a value...
-	_numerator /= gcd;
-	_denominator /= gcd;
+	//T gcd = gcd(_numerator, _denominator); //should create a function
+	////that takes the num and den and then gets a value...
+	//_numerator /= gcd;
+	//_denominator /= gcd;
 	if (_denominator < 0) { //turns the answer to positive...
 		_numerator *= -1;
 		_denominator *= -1;
