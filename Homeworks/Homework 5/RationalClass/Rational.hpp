@@ -34,14 +34,6 @@ public:
    template<typename U>
    friend std::ostream& operator<<(std::ostream & os, const Rational<U> & rhs);
 
-#if 0
-   //does this one need to be a friend? probably safer to!
-   //don't think I need this as a rational template....
-   template<typename U>
-   friend Rational<U> operator+=(const Rational<U> & rhs);
-
-#endif
-
    template<typename U>
    friend Rational<U> operator+(const Rational<U> & lhs, const Rational<U> & rhs);
 
@@ -54,31 +46,57 @@ public:
    template<typename U>
    friend bool operator<(const Rational<U>&lhs, const Rational<U>&rhs);
 
-
 };
 
-template<typename U> //double check if this needs U or T...uses U in the class
-std::ostream& operator<<(std::ostream& os, const Rational<U>& rhs) {
+template<typename T> 
+std::ostream& operator<<(std::ostream& os, const Rational<T>& rhs) {
 	return os;
 }
-
 template <typename T>
 Rational<T>::Rational(int num, int den) : _numerator(num), _denominator(den) {
 	reduce(); //only rational functions can call this! this reduces the fraction...
 };
-template<typename U>
-Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs) {
-	return lhs + rhs; //double check this...might need a different way to do this
+template<typename T>
+Rational<T>& operator-=(const Rational <T>& lhs, const Rational<T>& rhs) {
+	return lhs -= rhs;
 }
-template<typename U>
-Rational<U> operator-(const Rational<U>& lhs) {
-	return { -lhs._numerator, lhs._denominator }; // returns the irrational num/den values
+template<typename T>
+Rational<T>& operator*=(const Rational<T>& lhs, const Rational<T>& rhs) {
+	return lhs *= rhs;
+}
+template<typename T>
+Rational<T>& operator/(Rational<T>& lhs, const Rational<T>& rhs) {
+	return lhs /= rhs; //this doesn't seem right
+}
+template<typename T>
+Rational<T>& operator++() {//prefix ++
+	return *this += 1;
+}
+template<typename T>
+Rational<T> operator++(int) {//postfix ++
+	return *this += 2;
+}
+template<typename T>
+Rational<T>& operator--(const Rational<T>& lhs) {//prefix --
+	return *this -= 1;
+}
+template<typename T>
+Rational<T> operator--(int) {//postfix --
+	return *this -= 2;
 }
 
 template<typename T>
 void Rational<T>::reduce() {
-	//need to define what reduced function does!
+	T gcd = std::gcd(_numerator, _denominator); //should create a function
+	//that takes the num and den and then gets a value...
+	_numerator /= gcd;
+	_denominator /= gcd;
+	if (_denominator < 0) { //turns the answer to positive...
+		_numerator *= -1;
+		_denominator *= -1;
+	}
 }
+
 
 template<typename U>
 bool operator==(const Rational<U>& lhs, const Rational<U>& rhs) {
@@ -89,37 +107,17 @@ bool operator<(const Rational<U>& lhs, const Rational<U>& rhs) {
 	return lhs < rhs;
  }
 
-//think I need to include more bool operators..check test file
 
-//non boolean/rational operators
-template<typename T>
-Rational<T>& operator-=(const Rational <T> & lhs, const Rational<T>& rhs) {
-	return lhs -= rhs;
+template<typename U>
+Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs) {
+	return lhs + rhs; //double check this...might need a different way to do this
 }
-template<typename T>
-Rational<T>& operator*=(const Rational<T> & lhs, const Rational<T>& rhs) {
-	return lhs *= rhs;
+template<typename U>
+Rational<U> operator-(const Rational<U>& lhs) {
+	return { -lhs._numerator, lhs._denominator }; // returns the irrational num/den values
 }
-template<typename T>
-Rational<T>& operator/(Rational<T> & lhs, const Rational<T>& rhs) {
-	return lhs /= rhs; //this doesn't seem right
-}
-template<typename T>
-Rational<T>& operator++() {//prefix ++
-	return *this += 1;
-}        
-template<typename T>
-Rational<T> operator++(int) {//postfix ++
-	return *this += 2;
-} 
-template<typename T>
-Rational<T>& operator--(const Rational<T> & lhs) {//prefix --
-	return *this -= 1;
-}       
-template<typename T>
-Rational<T> operator--(int) {//postfix --
-	return *this -= 2;
-} 
+
+
 
 //and any operators I forgotthe first time round...
 template <typename T>
