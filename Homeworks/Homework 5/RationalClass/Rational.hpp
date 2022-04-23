@@ -21,7 +21,7 @@ private:
 
 public:
    // Rational() { _numerator=0; _denominator=1; }
-   Rational<T>(int,int=1);
+   Rational<T>(int=0,int=1);
    //these operators don't need templates because rational<T> above serves as such.
    Rational<T>& operator-=(const Rational& rhs);
    Rational<T>& operator*=(const Rational& rhs);
@@ -32,7 +32,7 @@ public:
    Rational<T> operator--(int); //postfix --
 
    template<typename U>
-   friend std::ostream& operator<<(std::ostream &, const Rational<U> & v);
+   friend std::ostream& operator<<(std::ostream & os, const Rational<U> & rhs);
 
 #if 0
    //does this one need to be a friend? probably safer to!
@@ -58,23 +58,41 @@ public:
 };
 
 template <typename T>
-Rational<T>(int, int = 1);
+Rational<T>::Rational(int num, int den) : _numerator(num), _denominator(den) {
+	reduce(); //only rational functions can call this! this reduces the fraction...
+};
+
+template<typename T>
+void Rational<T>::reduce() {
+	//need to define what reduced function does!
+}
+
+template<typename U> //double check if this needs U or T...uses U in the class
+std::ostream& operator<<(std::ostream& os, const Rational<U>& rhs) {
+	return os;
+ }
 
 template<typename U>
- std::ostream& operator<<(std::ostream&, const Rational<U>& v);
+Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs) {
+	return lhs + rhs; //double check this...might need a different way to do this
+ }
 
 template<typename U>
- Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs);
+Rational<U> operator-(const Rational<U>& lhs) {
+	return { -lhs._numerator, lhs._denominator }; // returns the irrational num/den values
+ }
 
 template<typename U>
- Rational<U> operator-(const Rational<U>& lhs);
+bool operator==(const Rational<U>& lhs, const Rational<U>& rhs) {
+	return lhs == rhs; //need to check these...
+ }
 
 template<typename U>
- bool operator==(const Rational<U>& lhs, const Rational<U>& rhs);
+bool operator<(const Rational<U>& lhs, const Rational<U>& rhs) {
+	return lhs < rhs;
+ }
 
-template<typename U>
- bool operator<(const Rational<U>& lhs, const Rational<U>& rhs);
-
+//non boolean operators
 Rational<T>& operator-=(const Rational& rhs);
 Rational<T>& operator*=(const Rational& rhs);
 Rational<T>& operator/=(const Rational& rhs);
