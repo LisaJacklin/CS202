@@ -9,6 +9,8 @@ using std::endl;
 
 #include <vector>
 using std::vector;
+using std::shared_ptr;
+using std::make_shared;
 
 //virtual base class
 class Shape {
@@ -85,6 +87,7 @@ void Rectangle::draw() const {
 }
 
 int main() {
+#if 0
 	//basic idea and how to use these functions and classes
 	Square s1;
 	Square s2(3);
@@ -106,4 +109,46 @@ int main() {
 	for (auto i : s) {
 		i.draw();
 	}
+#endif
+
+#if 0
+	//get shared_ptr to work!
+	Shape* u = new Square();
+	shared_ptr<Shape> sPtr = make_shared<Square>();
+
+	auto sPtr1 = make_shared <Square>();
+	auto sPtr2 = make_shared<Square> (10);
+	auto sPtr3 = make_shared<Rectangle>(8, 9);
+
+	sPtr1->draw();
+	sPtr2->draw();
+	sPtr3->draw();
+
+#endif
+
+	vector <shared_ptr<Shape>> s;
+	s.push_back(make_shared<Square>());
+
+	//don't use new and delete
+	vector <Shape*> v;
+	v.push_back(new Square());
+	v.push_back(new Square(10));
+	v.push_back(new Rectangle(8, 9));
+	v[2]->set_location(22);
+	v.push_back(new Rectangle(80, 90));
+	//can mix and match in container
+	for (auto s : v)
+		s->draw(); //resolves at run time
+
+	//never called delete
+
+#if 0
+	//didn't work - always called square::draw9)
+	//want polymorphism
+	vector <Shape> v;
+	v.push_back(new Square(25));
+	v.push_back(new Rect(8, 9));
+	for (auto s : v)
+		s.draw() //.operator must resolve at compile
+#endif
 }
