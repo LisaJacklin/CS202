@@ -21,24 +21,38 @@ private:
 
 public:
    // Rational() { _numerator=0; _denominator=1; }
-   Rational(int,int=1);
+   Rational<T>(int,int=1);
+   //these operators don't need templates because rational<T> above serves as such.
+   Rational<T>& operator-=(const Rational& rhs);
+   Rational<T>& operator*=(const Rational& rhs);
+   Rational<T>& operator/=(const Rational& rhs);
+   Rational<T>& operator++();        //prefix ++
+   Rational<T> operator++(int); //postfix ++
+   Rational<T>& operator--();        //prefix --
+   Rational<T> operator--(int); //postfix --
 
-   friend std::ostream& operator<<(std::ostream &, const Rational &);
-   //does this one need to be a friend? 
-   Rational & operator+=(const Rational &);
-   friend Rational operator+(const Rational &, const Rational &);
-   friend Rational operator-(const Rational &lhs);
-   friend bool operator==(const Rational &lhs, const Rational &rhs);
-   friend bool operator<(const Rational &lhs, const Rational &rhs);
+   template<typename U>
+   friend std::ostream& operator<<(std::ostream &, const Rational<U> & v);
 
-public:
-   Rational & operator-=(const Rational& rhs);
-   Rational & operator*=(const Rational& rhs);
-   Rational & operator/=(const Rational& rhs);
-   Rational & operator++();        //prefix ++
-   Rational operator++(int); //postfix ++
-   Rational & operator--();        //prefix --
-   Rational operator--(int); //postfix --
+#if 0
+   //does this one need to be a friend? probably safer to!
+   //don't think I need this as a rational template....
+   template<typename U>
+   friend Rational<U> operator+=(const Rational<U> & rhs);
+
+#endif
+
+   template<typename U>
+   friend Rational<U> operator+(const Rational<U> & lhs, const Rational<U> & rhs);
+
+   template<typename U>
+   friend Rational<U> operator-(const Rational<U> &lhs);
+
+   template<typename U>
+   friend bool operator==(const Rational<U> &lhs, const Rational<U> &rhs);
+
+   template<typename U>
+   friend bool operator<(const Rational<U>&lhs, const Rational<U>&rhs);
 
 
 };
