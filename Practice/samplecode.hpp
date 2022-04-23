@@ -149,8 +149,6 @@ Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs) { //canoni
     temp += rhs;
     return temp;
 }
-
-
 template<typename U>
 Rational<U> operator-(const Rational<U> &lhs) {
    return { -lhs._numerator, lhs._denominator };
