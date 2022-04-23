@@ -57,6 +57,34 @@ public:
 
 };
 
+template <typename T>
+Rational<T>(int, int = 1);
+
+template<typename U>
+ std::ostream& operator<<(std::ostream&, const Rational<U>& v);
+
+template<typename U>
+ Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs);
+
+template<typename U>
+ Rational<U> operator-(const Rational<U>& lhs);
+
+template<typename U>
+ bool operator==(const Rational<U>& lhs, const Rational<U>& rhs);
+
+template<typename U>
+ bool operator<(const Rational<U>& lhs, const Rational<U>& rhs);
+
+Rational<T>& operator-=(const Rational& rhs);
+Rational<T>& operator*=(const Rational& rhs);
+Rational<T>& operator/=(const Rational& rhs);
+Rational<T>& operator++();        //prefix ++
+Rational<T> operator++(int); //postfix ++
+Rational<T>& operator--();        //prefix --
+Rational<T> operator--(int); //postfix --
+
+
+#if 0
 //these can be used as a base for the template versions
 //rational opperators ...
 Rational operator-(const Rational &lhs, const Rational &rhs);
@@ -68,6 +96,6 @@ bool operator!=(const Rational &lhs, const Rational &rhs);
 bool operator>(const Rational &lhs, const Rational &rhs);
 bool operator<=(const Rational &lhs, const Rational &rhs);
 bool operator>=(const Rational &lhs, const Rational &rhs);
-
+#endif
 
 #endif
