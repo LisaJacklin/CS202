@@ -57,50 +57,75 @@ public:
 
 };
 
+template<typename U> //double check if this needs U or T...uses U in the class
+std::ostream& operator<<(std::ostream& os, const Rational<U>& rhs) {
+	return os;
+}
+
 template <typename T>
 Rational<T>::Rational(int num, int den) : _numerator(num), _denominator(den) {
 	reduce(); //only rational functions can call this! this reduces the fraction...
 };
+template<typename U>
+Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs) {
+	return lhs + rhs; //double check this...might need a different way to do this
+}
+template<typename U>
+Rational<U> operator-(const Rational<U>& lhs) {
+	return { -lhs._numerator, lhs._denominator }; // returns the irrational num/den values
+}
 
 template<typename T>
 void Rational<T>::reduce() {
 	//need to define what reduced function does!
 }
 
-template<typename U> //double check if this needs U or T...uses U in the class
-std::ostream& operator<<(std::ostream& os, const Rational<U>& rhs) {
-	return os;
- }
-
-template<typename U>
-Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs) {
-	return lhs + rhs; //double check this...might need a different way to do this
- }
-
-template<typename U>
-Rational<U> operator-(const Rational<U>& lhs) {
-	return { -lhs._numerator, lhs._denominator }; // returns the irrational num/den values
- }
-
 template<typename U>
 bool operator==(const Rational<U>& lhs, const Rational<U>& rhs) {
 	return lhs == rhs; //need to check these...
  }
-
 template<typename U>
 bool operator<(const Rational<U>& lhs, const Rational<U>& rhs) {
 	return lhs < rhs;
  }
 
-//non boolean operators
-Rational<T>& operator-=(const Rational& rhs);
-Rational<T>& operator*=(const Rational& rhs);
-Rational<T>& operator/=(const Rational& rhs);
-Rational<T>& operator++();        //prefix ++
-Rational<T> operator++(int); //postfix ++
-Rational<T>& operator--();        //prefix --
-Rational<T> operator--(int); //postfix --
+//think I need to include more bool operators..check test file
 
+//non boolean/rational operators
+template<typename T>
+Rational<T>& operator-=(const Rational <T> & lhs, const Rational<T>& rhs) {
+	return lhs -= rhs;
+}
+template<typename T>
+Rational<T>& operator*=(const Rational<T> & lhs, const Rational<T>& rhs) {
+	return lhs *= rhs;
+}
+template<typename T>
+Rational<T>& operator/(Rational<T> & lhs, const Rational<T>& rhs) {
+	return lhs /= rhs; //this doesn't seem right
+}
+template<typename T>
+Rational<T>& operator++() {//prefix ++
+	return *this += 1;
+}        
+template<typename T>
+Rational<T> operator++(int) {//postfix ++
+	return *this += 2;
+} 
+template<typename T>
+Rational<T>& operator--() {//prefix --
+	return *this -= 1;
+}       
+template<typename T>
+Rational<T> operator--(int) {//postfix --
+	return *this -= 2;
+} 
+
+//and any operators I forgotthe first time round...
+template <typename T>
+Rational<T> operator +=(const Rational<T> & lhs, const Rational<T> & rhs) {
+	return lhs += rhs;
+}
 
 #if 0
 //these can be used as a base for the template versions
