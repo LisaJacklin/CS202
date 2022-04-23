@@ -91,26 +91,26 @@ Rational<T>& Rational<T>::operator++() {//prefix ++
 	return *this += 1;
 }
 template<typename T>
-Rational<T>& Rational<T>:: operator++(int) {//postfix ++
-	//This function i'm having difficulty with...
-	//return *this += 2; did not work as planned
-	auto int a;
-	++a;
-	return a;
+Rational<T> Rational<T>::operator++(int) {//postfix ++
+	auto copy{ *this };
+	++(*this);
+	return copy;
 }
 template<typename T>
 Rational<T>& Rational<T>::operator--() {//prefix --
 	return *this -= 1;
 }
 template<typename T>
-Rational<T>& Rational<T>::operator--(int) {//postfix --
-	return *this -= 2;
+Rational<T> Rational<T>::operator--(int) {//postfix --
+	auto copy{ *this };
+	--(*this);
+	return copy;
 }
 
 //function template
 template<typename T>
 void Rational<T>::reduce() {
-	T gcd = std::gcd(_numerator, _denominator); //should create a function
+	T gcd = gcd(_numerator, _denominator); //should create a function
 	//that takes the num and den and then gets a value...
 	_numerator /= gcd;
 	_denominator /= gcd;
@@ -133,24 +133,24 @@ bool operator<(const Rational<T>& lhs, const Rational<T>& rhs) {
 	//this sets the value less than the other when cross multiplied
 	return lhs._numerator * rhs._denominator < rhs._numerator* lhs._denominator;
  }
-
 //missed bool operators:
 template<typename T>
 bool operator != (const Rational<T>& lhs, const Rational<T>& rhs) {
-
+	return !(rhs == lhs);
 }
 template <typename T>
 bool operator > (const Rational<T>& lhs, const Rational<T> &rhs) {
-
+	return rhs < lhs;
 }
 template <typename T>
 bool operator <= (const Rational<T>& lhs, const Rational <T>& rhs) {
-
+	return !(rhs > lhs);
 }
 template <typename T>
-bool operator <= (const Rational<T>& lhs, const Rational <T>& rhs) {
-
+bool operator >= (const Rational<T>& lhs, const Rational <T>& rhs) {
+	return !(rhs < lhs);
 }
+
 
 template<typename U>
 Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs) {
@@ -160,16 +160,13 @@ template<typename U>
 Rational<U> operator-(const Rational<U>& lhs) {
 	return { -lhs._numerator, lhs._denominator }; // returns the irrational num/den values
 }
-template <typename T>
-
 //other missing templates
 template <typename U>
-Rational<U> operator- (const Rational<U> & lhs, const Rational<U> & rhs) {
-	//having issues with this operator again...
+Rational<U> operator-(const Rational<U> &lhs, const Rational<U> &rhs) { 
 	return lhs + -rhs;
 }
 template <typename U>
-Rational<U> operator* (Rational<U> lhs, const Rational<U>& rhs) {
+Rational<U> operator*(Rational<U> lhs, const Rational<U>& rhs) {
 	return lhs *= rhs;
 }
 template <typename U>

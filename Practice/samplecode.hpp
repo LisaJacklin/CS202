@@ -93,7 +93,7 @@ Rational<T> Rational<T>::operator++(int) {//postfix ++
     auto copy{ *this };
     ++(*this);
     return copy;
-} //HELP
+} 
 template <typename T>
 Rational<T>& Rational<T>::operator--() {//prefix --
     return *this -= 1;
@@ -103,7 +103,7 @@ Rational<T> Rational<T>::operator--(int) {//postfix --
     auto copy{ *this };
     --(*this);
     return copy;
-} //HELP
+} 
 
 template<typename T>
 bool operator==(const Rational<T>& lhs, const Rational<T>& rhs) {
@@ -113,7 +113,6 @@ template<typename T>
 bool operator<(const Rational <T>& lhs, const Rational<T>& rhs) {
     return lhs._numerator * rhs._denominator < rhs._numerator* lhs._denominator;
 }
-
 template<typename T>
 bool operator!=(const Rational<T>& lhs, const Rational<T>& rhs) {//canonical
     return !(rhs == lhs);
