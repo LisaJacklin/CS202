@@ -13,7 +13,6 @@
 //now a template class
 template <typename T> 
 class Rational {
-
 private:
    int _numerator;
    int _denominator;
@@ -23,9 +22,10 @@ public:
    // Rational() { _numerator=0; _denominator=1; }
    Rational<T>(int=0,int=1);
    //these operators don't need templates because rational<T> above serves as such.
-   Rational<T>& operator-=(const Rational& rhs);
-   Rational<T>& operator*=(const Rational& rhs);
-   Rational<T>& operator/=(const Rational& rhs);
+   Rational<T>& operator-=(const Rational<T>& rhs);
+   Rational<T>& operator*=(const Rational<T>& rhs);
+   Rational<T>& operator/=(const Rational<T>& rhs);
+   Rational<T>& operator +=(const Rational<T>& rhs); //added this missing operator
    Rational<T>& operator++();        //prefix ++
    Rational<T> operator++(int); //postfix ++
    Rational<T>& operator--();        //prefix --
@@ -113,7 +113,7 @@ Rational<T> operator++(int) {//postfix ++
 	return *this += 2;
 } 
 template<typename T>
-Rational<T>& operator--() {//prefix --
+Rational<T>& operator--(const Rational<T> & lhs) {//prefix --
 	return *this -= 1;
 }       
 template<typename T>
@@ -123,9 +123,6 @@ Rational<T> operator--(int) {//postfix --
 
 //and any operators I forgotthe first time round...
 template <typename T>
-Rational<T> operator +=(const Rational<T> & lhs, const Rational<T> & rhs) {
-	return lhs += rhs;
-}
 
 #if 0
 //these can be used as a base for the template versions
