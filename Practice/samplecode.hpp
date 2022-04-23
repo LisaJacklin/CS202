@@ -113,6 +113,7 @@ template<typename T>
 bool operator<(const Rational <T>& lhs, const Rational<T>& rhs) {
     return lhs._numerator * rhs._denominator < rhs._numerator* lhs._denominator;
 }
+
 template<typename T>
 bool operator!=(const Rational<T>& lhs, const Rational<T>& rhs) {//canonical
     return !(rhs == lhs);

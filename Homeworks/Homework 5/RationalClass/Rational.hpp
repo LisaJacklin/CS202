@@ -121,19 +121,36 @@ void Rational<T>::reduce() {
 }
 
 //boolean operators
-template<typename U>
+template<typename T>
 bool operator==(const Rational<U>& lhs, const Rational<U>& rhs) {
 	//return lhs == rhs; //need to check these...
 	//adjusting this to make sure nums are equal and den are equal
 	return lhs._numerator == rhs._numerator && lhs._denominator == rhs._denominator;
  }
-template<typename U>
+template<typename T>
 bool operator<(const Rational<U>& lhs, const Rational<U>& rhs) {
 	//return lhs < rhs;
 	//this sets the value less than the other when cross multiplied
 	return lhs._numerator * rhs._denominator < rhs._numerator* lhs._denominator;
  }
 
+//missed bool operators:
+template<typename T>
+bool operator != (const Rational<T>& lhs, const Rational<T>& rhs) {
+
+}
+template <typename T>
+bool operator > (const Rational<T>& lhs, const Rational<T> &rhs) {
+
+}
+template <typename T>
+bool operator <= (const Rational<T>& lhs, const Rational <T>& rhs) {
+
+}
+template <typename T>
+bool operator <= (const Rational<T>& lhs, const Rational <T>& rhs) {
+
+}
 
 template<typename U>
 Rational<U> operator+(const Rational<U>& lhs, const Rational<U>& rhs) {
