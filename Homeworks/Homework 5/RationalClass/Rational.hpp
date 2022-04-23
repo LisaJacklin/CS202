@@ -165,20 +165,21 @@ template <typename T>
 //other missing templates
 template <typename U>
 Rational<U> operator- (const Rational<U> & lhs, const Rational<U> & rhs) {
-
+	//having issues with this operator again...
+	return lhs + -rhs;
 }
 template <typename U>
 Rational<U> operator* (Rational<U> lhs, const Rational<U>& rhs) {
-
+	return lhs *= rhs;
 }
-
 template <typename U>
 Rational<U> operator/ (Rational <U> lhs, const Rational<U>& rhs) {
-
+	return lhs /= rhs;
 }
 
 #if 0
 //these can be used as a base for the template versions
+// a bunch of these are from the ones i think I left out...
 //rational opperators ...
 Rational operator-(const Rational &lhs, const Rational &rhs);
 Rational operator*(Rational lhs, const Rational &rhs);
