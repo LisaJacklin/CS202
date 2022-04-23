@@ -6,6 +6,7 @@
 // CS 202 Homework 5
 // 4/23/2022
 //
+//Note: this code is used for part 2!
 
 #include <iostream>
 using std::cout;
