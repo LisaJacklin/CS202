@@ -21,7 +21,20 @@ int fib(int n) {
 
 int fib_loop(int n) {
 	//returns the nth number in the sequence without recursion...
-	return 0;
+	if (n < 1) return 0;
+	if (n == 1 || n == 2) return 1; // if the number is 1 or 2, returns 1
+
+	int total = 0;
+	int one = 1; //if n = 1,
+	int two = 1; // if n = 2 answer is the same as n  = 1
+
+	for (int i = 2; i < n; i++) { //esentially finds the answer for n <=2.
+		//can this be done with a swap?
+		total = one + two;
+		one = two;
+		two = total;
+	}
+	return total; //produces the answer for the loop.
 }
 
 int ack(int m, int n) {
@@ -36,7 +49,7 @@ int main() {
 
 	cout << "Fibonacci Sequence" << endl;
 	for (int i = 0; i < 20; i++) {
-		cout << "fib(" << i << "): " << fib(i) << endl;
+		cout << "fib(" << i << "): " << fib(i) << "==" << fib_loop(i) << " total\n";
 	}
 
 
