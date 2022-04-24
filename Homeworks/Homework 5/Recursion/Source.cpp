@@ -60,6 +60,16 @@ int main() {
 		cout << "fib(" << i << "): " << fib(i) << "==" << fib_loop(i) << " total\n";
 	}
 
+	//two spaces between fibonacci sequence and ackermanns sequence
+	cout << endl << endl;
+
+	cout << "ACK" << endl;
+	//two variable for loop for n and m
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 6 - i; j++) {
+			cout << "ack(" << i << ", " << j << ") = " << ack(i, j) << endl;
+		}
+	}
 
 	cout << "end of main" << endl;
 }
