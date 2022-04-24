@@ -39,8 +39,16 @@ int fib_loop(int n) {
 
 int ack(int m, int n) {
 	//Ackermann's number 
+	//Note: use the piecewise function given in homework for these numbers
 
-	return 0;
+	//n + 1 if m = 0
+	if (m == 0) return n + 1;
+	//A(m-1,1) if m>0 and n=0
+	if (m > 0 && n == 0) return ack(m - 1, 1);
+	//A(m-1, A(m,n-1)) if m>0 and n > 0
+	if (m > 0 && n > 0) return ack(m - 1, ack(m, n - 1));
+
+	return -1;
 }
 
 
