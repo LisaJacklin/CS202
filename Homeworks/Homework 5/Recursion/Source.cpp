@@ -5,8 +5,13 @@
 //
 
 #include <iostream>
+#include "Stopwatch.hpp"
 using std::cout;
 using std::endl;
+
+//ackerman's function analysis
+// chart the largest numbers I can compute
+//
 
 //note the use of integer functions because everything delt w/ is a number
 int fib(int n) {
@@ -40,7 +45,9 @@ int fib_loop(int n) {
 int ack(int m, int n) {
 	//Ackermann's number 
 	//Note: use the piecewise function given in homework for these numbers
-
+	// 
+	//having issues with stack overflow...
+	// 
 	//n + 1 if m = 0
 	if (m == 0) return n + 1;
 	//A(m-1,1) if m>0 and n=0
@@ -53,7 +60,6 @@ int ack(int m, int n) {
 
 
 int main() {
-	cout << "start of main" << endl;
 
 	cout << "Fibonacci Sequence" << endl;
 	for (int i = 0; i < 20; i++) {
@@ -64,12 +70,16 @@ int main() {
 	cout << endl << endl;
 
 	cout << "ACK" << endl;
+
+	StopWatch timer;
 	//two variable for loop for n and m
 	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 6 - i; j++) {
-			cout << "ack(" << i << ", " << j << ") = " << ack(i, j) << endl;
+		timer.start();
+		for (int j = 0; j < 5 - i; j++) {
+			timer.stop();
+			cout << "ack(" << i << ", " << j << ") = " << ack(i, j);
+			cout << "time: " << timer.getElapsedSeconds() << endl;
 		}
 	}
 
-	cout << "end of main" << endl;
 }
