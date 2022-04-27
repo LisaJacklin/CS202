@@ -21,8 +21,10 @@ class Token {
 private:
     vector<string> token;
     vector<int> paragraphs;
+    int columns; //trying to add columns as a factor in printTokens...
 
 public:
+    //read lines and paragraph to tokens should be fine for multicolumns.
     void readLines(vector<Token>& toRet, istream& is) {
         // vector<Token> toRet;
         vector<int> paragraph;
@@ -55,7 +57,6 @@ public:
         //return toRet;
 
     }
-
     void paragraphsToTokens(vector<string>& toRet, const string& line) {
         //vector<string> toRet; this is now included in the void
         istringstream is(line);
@@ -77,7 +78,11 @@ public:
         // return toRet;
     }
 
-    void printTokens(ostream& os, vector<Token>& tokens) {
+    //print tokens is where columns can be adjusted!
+    void printTokens(ostream& os, vector<Token>& tokens, int & columns) {
+       
+//code from two column format
+#if 0
         int space_left = 38;
 
         for (int i = 0; i < token.size(); i++) {
@@ -97,7 +102,7 @@ public:
                 os << "\n\n" << " "; //new lines first column to second column again
             }
 
-
+#endif
 
 #if 0 //code from book.hpp used as reference
             // os << token[i] << " ";

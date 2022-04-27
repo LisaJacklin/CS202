@@ -21,8 +21,8 @@ using std::endl;
 
 /*
 Requirements:
--turn the program from bookread.cpp/hpp into the
-  then add two columns 38 char 4 space 38 char
+-turn the program from midterm to be able to handle 3 columns
+- or rather: into a function/class that allows for any amount of columns....
 
   ideas:
   setw(4) for the space between the columns?
@@ -36,9 +36,10 @@ int main(int argc, char** argv) {
     //remember this has to be true to read!
     bool fileMode = true;
     //file name to read
-    string fileName = "980.txt";
+    string fileName = "980.txt";//Check this is included here in Final source
     bool printing = true;
 
+#if 0 //don't think I need this data in this case
     for (int i = 1; i < argc; i++) {
 
         if (string(argv[i]) == "--lineonly") {
@@ -51,12 +52,17 @@ int main(int argc, char** argv) {
         }
 
     }
+
+#endif
+
     //error tester
     if (!fileMode) {
         cout << "Expected a file as parameter" << endl;
         return 0;
     }
 
+    //the following code should be okay...simply need to adjust the class functions etc.
+    //Maybe add an option for the user to change the columns amount....?
     vector<Token> tokens;
     ifstream is(fileName);
 
@@ -66,5 +72,4 @@ int main(int argc, char** argv) {
         Token::printTokens(cout, tokens);
 
     };
-
 }
