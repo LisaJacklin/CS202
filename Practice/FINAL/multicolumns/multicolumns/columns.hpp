@@ -25,7 +25,7 @@ private:
 
 public:
     //read lines and paragraph to tokens should be fine for multicolumns.
-    void readLines(vector<Token>& toRet, istream& is) {
+    void readLines(vector<Token>& toRet, istream& is)  {
         // vector<Token> toRet;
         vector<int> paragraph;
 
@@ -57,7 +57,7 @@ public:
         //return toRet;
 
     }
-    void paragraphsToTokens(vector<string>& toRet, const string& line) {
+    void paragraphsToTokens(vector<string>& toRet, const string& line)  {
         //vector<string> toRet; this is now included in the void
         istringstream is(line);
         string token;
