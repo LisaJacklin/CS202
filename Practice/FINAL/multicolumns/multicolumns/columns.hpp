@@ -81,9 +81,8 @@ public:
     //print tokens is where columns can be adjusted!
     void printTokens(ostream& os, vector<Token>& tokens, int & columns) {
        
-//code from two column format
-#if 0
-        int space_left = 38;
+     int space_left = (80 - 2*columns )/ columns; //this should be 80 total characters per line,
+     //with columns * 2 spaces of separation, which is separated by columns
 
         for (int i = 0; i < token.size(); i++) {
             if (token[i].size() < 38) {
@@ -102,7 +101,7 @@ public:
                 os << "\n\n" << " "; //new lines first column to second column again
             }
 
-#endif
+
 
 #if 0 //code from book.hpp used as reference
             // os << token[i] << " ";
